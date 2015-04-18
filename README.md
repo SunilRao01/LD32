@@ -13,3 +13,5 @@ Ian Swift: AI/pathfinding
 Keith Thomas: 2D art  
 
 Bryan Spahr: voices, music, ambient sound  
+
+Nathan Hurde: bringer of the chicken  
