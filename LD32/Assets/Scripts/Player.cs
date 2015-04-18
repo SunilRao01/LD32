@@ -30,8 +30,6 @@ public class Player : MonoBehaviour
 
 		Physics2D.IgnoreLayerCollision(8, 9);
 		Physics2D.IgnoreLayerCollision(9, 9);
-		Physics.IgnoreLayerCollision(8, 9);
-		Physics.IgnoreLayerCollision(9, 9);
 	}
 
 	void Start () 
@@ -47,6 +45,8 @@ public class Player : MonoBehaviour
 		handleAimer();
 		handleAnimalCall();
 		handleShooting();
+
+		Debug.Log("Animals in queue: " + animalQueue.Count.ToString());
 	}
 
 	void handleMovment()
@@ -77,11 +77,18 @@ public class Player : MonoBehaviour
 	void handleShooting()
 	{
 		// Direction to shoot animal: aimerObject.transform.up
-
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) && animalQueue.Count != 0)
 		{
-			Debug.Log("Shoot animal!");
 			animalQueue[0].shootAnimal(aimerObject.transform.up);
+			animalQueue[0].caught = false;
+			animalQueue[0].queueIndex = animalQueue.Count;
+			animalQueue.RemoveAt(0);
+
+			if (animalQueue.Count > 0)
+			{
+				// TODO: Update Queue Position of animals in a smoother fashion
+				updateQueuePositions();
+			}
 		}
 	}
 
@@ -115,6 +122,15 @@ public class Player : MonoBehaviour
 		if (animalQueue.Count < 5)
 		{
 			animalQueue.Add(inputAnimal);
+			//animalQueue[animalQueue.Count-1].queueIndex = animalQueue.Count
+		}
+	}
+
+	void updateQueuePositions()
+	{
+		for (int i = 0; i < animalQueue.Count; i++)
+		{
+			animalQueue[i].queueIndex--;
 		}
 	}
 

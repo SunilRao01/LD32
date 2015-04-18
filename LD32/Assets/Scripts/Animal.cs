@@ -13,10 +13,12 @@ public class Animal : MonoBehaviour
 	public string weakAgainst;
 
 	public float moveForce;
-	private bool isMoving;
+	public bool isMoving;
+	private bool isShot;
 	private Transform playerTransform;
 	private Vector3 targetPosition;
 	public int queueIndex;
+	public bool caught;
 
 	void Start()
 	{
@@ -36,17 +38,39 @@ public class Animal : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.name == "PingSphere" && !isMoving)
+		if (other.gameObject.name == "PingSphere" && !isMoving && !caught)
 		{
 			Debug.Log("You have pinged an animal");
 			other.transform.parent.gameObject.GetComponent<Player>().addAnimal(this);
 			queueIndex = other.transform.parent.gameObject.GetComponent<Player>().getCurrentAnimalQueueSize();
 			isMoving = true;
+			caught = true;
+		}
+
+		// When animal is returning, add animal back to queue
+		if (other.gameObject.name == "PlayerSprite" && isShot)
+		{
+			other.transform.parent.gameObject.GetComponent<Player>().addAnimal(this);
+			isShot = false;
 		}
 	}
 
 	public void shootAnimal(Vector3 direction)
 	{
-		GetComponent<Rigidbody2D>().AddForce(direction * 1000);
+		isShot = true;
+		GetComponent<Rigidbody2D>().AddForce(direction * 1500);
+		StartCoroutine(waitAndComeBack());
+	}
+
+	public void setPosition(Vector3 inputPosition)
+	{
+		transform.position = inputPosition;
+	}
+
+	IEnumerator waitAndComeBack()
+	{
+		yield return new WaitForSeconds(3.0f);
+		isMoving = true;
+
 	}
 }
