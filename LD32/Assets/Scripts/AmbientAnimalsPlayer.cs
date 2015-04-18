@@ -7,12 +7,15 @@ public class AmbientAnimalsPlayer : MonoBehaviour {
 	public AudioClip[] nightSounds;
 	public GameObject AmbientForestSource;
 	private AmbientForestToggle aft;
+	private int playInterval;
 	private float soundCounter;
 
 	// Use this for initialization
 	void Start () {
 		aft = AmbientForestSource.GetComponent<AmbientForestToggle>();
 		Random.seed = (int)System.DateTime.Now.Ticks;
+		playInterval = Random.Range(6,15);
+		Debug.Log (playInterval);
 	}
 	
 	// Update is called once per frame
@@ -21,9 +24,8 @@ public class AmbientAnimalsPlayer : MonoBehaviour {
 	}
 
 	public void periodicSound(){
-		int x = Random.Range(10,25);
 		soundCounter += Time.deltaTime;
-		if (soundCounter >= x) {
+		if (soundCounter >= playInterval) {
 			bool day = aft.isDay();
 
 			if(day == true){
@@ -36,6 +38,8 @@ public class AmbientAnimalsPlayer : MonoBehaviour {
 
 			GetComponent<AudioSource>().Play();
 			soundCounter = 0f;
+			playInterval = Random.Range(6,15);
+			Debug.Log (playInterval);
 		}
 	}
 }
