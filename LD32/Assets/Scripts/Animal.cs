@@ -12,10 +12,11 @@ public class Animal : MonoBehaviour
 	public string strongAgainst;
 	public string weakAgainst;
 
+	public float moveForce;
 	private bool isMoving;
 	private Transform playerTransform;
 	private Vector3 targetPosition;
-	private int queueIndex;
+	public int queueIndex;
 
 	void Start()
 	{
@@ -25,14 +26,17 @@ public class Animal : MonoBehaviour
 	void Update()
 	{
 		targetPosition = playerTransform.position;
-		targetPosition.y += 5 * queueIndex;
+		targetPosition.y -= 1.5f * queueIndex;
 
-
+		if (isMoving)
+		{
+			GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position) * moveForce);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.name == "PingSphere")
+		if (other.gameObject.name == "PingSphere" && !isMoving)
 		{
 			Debug.Log("You have pinged an animal");
 			other.transform.parent.gameObject.GetComponent<Player>().addAnimal(this);

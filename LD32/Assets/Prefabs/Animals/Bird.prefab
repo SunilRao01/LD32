@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 402458}
   - 212: {fileID: 21233128}
-  - 114: {fileID: 11429658}
   - 50: {fileID: 5059186}
   - 61: {fileID: 6110688}
-  m_Layer: 0
+  - 114: {fileID: 11491520}
+  m_Layer: 9
   m_Name: Bird
   m_TagString: Animal
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138454}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.1500001, y: 0, z: 0}
+  m_LocalPosition: {x: 12.7399998, y: 1.17999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38,7 +38,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138454}
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: .0500000007
   m_GravityScale: 0
   m_FixedAngle: 1
@@ -59,7 +59,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .860000014, y: .910000026}
---- !u!114 &11429658
+--- !u!114 &11491520
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -76,6 +76,8 @@ MonoBehaviour:
   damageMultiplier: 0
   strongAgainst: 
   weakAgainst: 
+  moveForce: 0
+  queueIndex: 0
 --- !u!212 &21233128
 SpriteRenderer:
   m_ObjectHideFlags: 1

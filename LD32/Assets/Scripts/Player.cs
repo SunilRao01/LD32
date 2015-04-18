@@ -25,12 +25,15 @@ public class Player : MonoBehaviour
 		rigidbody = GetComponent<Rigidbody2D>();
 		aimerObject = transform.FindChild("AimerPivot").gameObject;
 		pingObject = transform.FindChild("PingSphere").gameObject;
+		pingObject.GetComponent<CircleCollider2D>().enabled = false;
 		originalPingScale = pingObject.transform.localScale;
 	}
 
 	void Start () 
 	{
 		pingObject.GetComponent<MeshRenderer>().enabled = false;
+
+		animalQueue = new List<Animal>();
 	}
 	
 	void Update () 
@@ -70,6 +73,7 @@ public class Player : MonoBehaviour
 		{
 			// Make animal call circle visible
 			pingObject.GetComponent<MeshRenderer>().enabled = true;
+			pingObject.GetComponent<CircleCollider2D>().enabled = true;
 
 			Vector3 scaleTarget = new Vector3(pingRange, pingRange, pingRange);
 			iTween.ScaleTo(pingObject, 
@@ -102,6 +106,7 @@ public class Player : MonoBehaviour
 
 		// Make animal call circle visible
 		pingObject.GetComponent<MeshRenderer>().enabled = false;
+		pingObject.GetComponent<CircleCollider2D>().enabled = false;
 		
 		isCalling = false;     
 	}
