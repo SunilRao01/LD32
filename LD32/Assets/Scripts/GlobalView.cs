@@ -10,6 +10,11 @@ namespace Hamelin
 
 		public GameObject regionContainer;
 
+		public GameObject poacher;
+
+		public float MaxMovementSpeed = 5;
+		public float MovementForce = 15;
+
 		private float time = 0;
 
 		void Start()
@@ -21,6 +26,8 @@ namespace Hamelin
 		{
 			if (Time.timeSinceLevelLoad - time > 5) {
 				time = Time.timeSinceLevelLoad;
+				GameObject myPoacher = GameObject.Instantiate(poacher);
+				myPoacher.GetComponent<PoacherView>().controller = new PathingController(pathContainer.getPath());
 			}
 		}
 	}

@@ -12,12 +12,12 @@ namespace Hamelin
 		{
 			private List<GameObject> nodes;
 
-			public PathNodes(List<int> nodeNums, List<GameObject> regions)
+			public PathNodes(List<int> nodeNums, GameObject[] regions)
 			{
 				nodes = new List<GameObject>();
 				foreach (int node in nodeNums)
 				{
-					if (node >= 0 && node < regions.Count);
+					if (node >= 0 && node < regions.Length);
 					{
 						nodes.Add (regions[node]);
 					}
@@ -35,7 +35,8 @@ namespace Hamelin
 
 		public PathContainer(GameObject RegionContainer) {
 
-			List<GameObject> regions;
+			GameObject[] regions;
+			paths = new List<PathNodes> ();
 
 			int numRegions = 0;
 			foreach (Transform region in RegionContainer.transform) { //get the number of regions
@@ -45,8 +46,9 @@ namespace Hamelin
 			//output the num regions for reference
 			Debug.Log ("Current Number Of Regions: " + numRegions);
 
-			regions = new List<GameObject> (numRegions); //create a region list
+			regions = new GameObject[numRegions]; //create a region list
 			foreach (Transform region in RegionContainer.transform) {
+				Debug.Log (region.GetComponent<RegionView> ().UNIQUE_ID);
 				regions [region.GetComponent<RegionView> ().UNIQUE_ID] = region.gameObject;
 			}
 
@@ -65,8 +67,9 @@ namespace Hamelin
 		}
 			
 			
-		public List<GameObject> getPaths()
+		public List<GameObject> getPath()
 		{
+			Debug.Log ("paths: " + paths.Count);
 			return paths[Random.Range (0, paths.Count)].GetNodes();
 		}
 	}

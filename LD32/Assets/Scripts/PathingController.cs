@@ -8,21 +8,23 @@ namespace Hamelin
 	public class PathingController
 	{
 		private List<GameObject> nodes;
+		int position;
 
 		public PathingController(List<GameObject> _nodes)
 		{
 			nodes = _nodes;
+			position = 0;
 		}
 
 		public void popNode()
 		{
-			nodes.RemoveAt (0);
+			position++;
 		}
 
 		public GameObject getNextNode()
 		{
-			if (nodes.Count > 0) {
-				return nodes [0];
+			if (position < nodes.Count) {
+				return nodes [position];
 			}
 			else { return null; }
 		}
