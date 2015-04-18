@@ -83,6 +83,11 @@ public class Player : MonoBehaviour
 		return animalQueue[animalIndex];
 	}
 
+	public int getCurrentAnimalQueueSize()
+	{
+		return animalQueue.Count;
+	}
+
 	public void addAnimal(Animal inputAnimal)
 	{
 		if (animalQueue.Count < 5)
