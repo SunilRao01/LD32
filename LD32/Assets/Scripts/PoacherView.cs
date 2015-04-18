@@ -13,7 +13,7 @@ namespace Hamelin
 		void Update () {
 			if (!isSetup) {
 				if (controller != null) {
-					transform.position = controller.getNextNode ();
+					transform.position = controller.getNextNode ().transform.position;
 					controller.popNode ();
 					nextNode = controller.getNextNode();
 					isSetup = true;

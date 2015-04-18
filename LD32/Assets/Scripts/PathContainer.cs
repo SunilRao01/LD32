@@ -12,9 +12,9 @@ namespace Hamelin
 		{
 			private List<GameObject> nodes;
 
-			public PathNodes(List<Integer> nodeNums, List<GameObject> regions)
+			public PathNodes(List<int> nodeNums, List<GameObject> regions)
 			{
-				nodes = new ArrayList();
+				nodes = new List<GameObject>();
 				foreach (int node in nodeNums)
 				{
 					if (node >= 0 && node < regions.Count);
@@ -45,7 +45,7 @@ namespace Hamelin
 			//output the num regions for reference
 			Debug.Log ("Current Number Of Regions: " + numRegions);
 
-			regions = new ArrayList (numRegions); //create a region list
+			regions = new List<GameObject> (numRegions); //create a region list
 			foreach (Transform region in RegionContainer.transform) {
 				regions [region.GetComponent<RegionView> ().UNIQUE_ID] = region.gameObject;
 			}
@@ -53,11 +53,11 @@ namespace Hamelin
 			//load in the paths into a data structure
 			StreamReader sr = new StreamReader (Application.dataPath + "/StreamingAssets/paths.txt");
 			while (!sr.EndOfStream) {
-				List<String> nodeNumbersStrings = sr.ReadLine ().Split (',');
+				string[] nodeNumbersStrings = sr.ReadLine ().Split (',');
 
-				List<Integer> nodeNumbersInts = new ArrayList ();
+				List<int> nodeNumbersInts = new List<int>();
 				foreach (string numString in nodeNumbersStrings) {
-					nodeNumbersInts.Add ((int)numString);
+					nodeNumbersInts.Add (int.Parse(numString));
 				}
 				PathNodes myPath = new PathNodes (nodeNumbersInts, regions);
 				paths.Add (myPath);

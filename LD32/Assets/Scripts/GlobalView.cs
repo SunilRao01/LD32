@@ -8,7 +8,7 @@ namespace Hamelin
 		
 		private PathContainer pathContainer;
 
-		public RegionView regionContainer;
+		public GameObject regionContainer;
 
 		private float time = 0;
 
@@ -21,7 +21,6 @@ namespace Hamelin
 		{
 			if (Time.timeSinceLevelLoad - time > 5) {
 				time = Time.timeSinceLevelLoad;
-
 			}
 		}
 	}

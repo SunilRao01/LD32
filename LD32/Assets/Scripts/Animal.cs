@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Animal : MonoBehaviour {
+public class Animal 
+{
+	// Animal Stats
+	public int health;
+	public int attackDamage;
+	public int defense;
+	public float damageMultiplier;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public string strongAgainst;
+	public string weakAgainst;
 }
