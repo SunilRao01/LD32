@@ -68,8 +68,6 @@ public class Player : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(1) && !isCalling)
 		{
-			Debug.Log("Animal call!");
-
 			// Make animal call circle visible
 			pingObject.GetComponent<MeshRenderer>().enabled = true;
 
