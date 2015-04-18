@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Hamelin;
 
 namespace Hamelin
 {
-	public class BushmanView : MonoBehaviour {
+	public class BushmanView : IEnemy {
 
 		public PathingController controller = null;
 		private bool isActive = false;
@@ -20,7 +21,8 @@ namespace Hamelin
 		
 		private GlobalView GlobalGO;
 		private Rigidbody2D rigidbody;
-		
+
+		private List<GameObject> targets;
 		
 		void Start()
 		{
@@ -32,6 +34,8 @@ namespace Hamelin
 		}
 		// Update is called once per frame
 		void Update () {
+			updateTarget ();
+
 			if (!isActive) {
 				if (controller != null) {
 					GameObject node = controller.getNextNode();
@@ -60,7 +64,12 @@ namespace Hamelin
 					movementDirection = movementDirection.normalized * GlobalGO.MovementForce;
 				}
 
-				if (walking)
+				if (isFollowing)
+				{
+					if (Vector2.Distance(targetObject.transform.position, transform.position) > 1.2) { targetPosition = targetObject.transform.position; }
+					GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position) * GlobalGO.MovementForce);	
+				}
+				else if (walking)
 				{
 					if (Time.timeSinceLevelLoad - timer > walkTime)
 					{
@@ -86,6 +95,11 @@ namespace Hamelin
 
 				}
 			}
+		}
+
+		void AddEnemyToList (GameObject go)
+		{
+			targets.Add (go);
 		}
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Hamelin
 {
-	public class PoacherView : MonoBehaviour {
+	public class PoacherView : IEnemy {
 
 		public PathingController controller = null;
 		private bool isActive = false;
@@ -14,14 +14,17 @@ namespace Hamelin
 		private GlobalView GlobalGO;
 		private Rigidbody2D rigidbody;
 
-
 		void Start()
 		{
 			GlobalGO = Camera.main.GetComponentInChildren<GlobalView> ();
 			rigidbody = GetComponent<Rigidbody2D> ();
+
 		}
 		// Update is called once per frame
 		void Update () {
+
+			updateTarget ();
+
 			if (!isActive) {
 				if (controller != null) {
 					GameObject node = controller.getNextNode();
@@ -50,7 +53,15 @@ namespace Hamelin
 					movementDirection = movementDirection.normalized * GlobalGO.MovementForce;
 				}
 
-				rigidbody.AddForce(movementDirection);
+				if (isFollowing)
+				{
+					if (Vector2.Distance(targetObject.transform.position, transform.position) > 1.2) { targetPosition = targetObject.transform.position; }
+					GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position) * GlobalGO.MovementForce);
+				}
+				else
+				{
+					rigidbody.AddForce(movementDirection);
+				}
 			}
 		}
 	}

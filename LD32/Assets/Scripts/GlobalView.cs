@@ -31,8 +31,8 @@ namespace Hamelin
 			if (Time.timeSinceLevelLoad - time > nextTime) {
 				nextTime = Random.Range(3.0f, 7.0f);
 				time = Time.timeSinceLevelLoad;
-				GameObject myPoacher = GameObject.Instantiate(bushman);
-				myPoacher.GetComponent<BushmanView>().controller = new PathingController(pathContainer.getPath());
+				GameObject myPoacher = GameObject.Instantiate(poacher);
+				myPoacher.GetComponent<PoacherView>().controller = new PathingController(pathContainer.getPath());
 			}
 		}
 	}

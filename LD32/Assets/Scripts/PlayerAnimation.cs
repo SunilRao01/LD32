@@ -3,10 +3,13 @@ using System.Collections;
 
 public class PlayerAnimation : MonoBehaviour {
 
+	float xScale;
+	Vector3 vector;
 	// Use this for initialization
 	void Start () 
 	{
-
+		xScale = transform.localScale.x;
+		vector = transform.localScale;
 	}
 	
 	// Update is called once per frame
@@ -18,6 +21,14 @@ public class PlayerAnimation : MonoBehaviour {
 		}
 		else
 		{
+			if (Input.GetAxisRaw ("Horizontal") < 0)
+			{
+				transform.localScale= new Vector3(xScale * -1, vector.y, vector.z);
+			}
+			else
+			{
+				transform.localScale = new Vector3(xScale, vector.y, vector.z);
+			}
 			GetComponent<Animator>().SetBool("walking", true);
 		}
 	}

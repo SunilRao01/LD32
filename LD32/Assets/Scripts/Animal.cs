@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Hamelin;
 
 public class Animal : MonoBehaviour
 {
@@ -20,8 +21,13 @@ public class Animal : MonoBehaviour
 	private Transform playerTransform;
 	private Vector3 enemyPosition;
 	private Vector3 targetPosition;
+
+	private GameObject enemyToFollow;
+
 	public int queueIndex;
 	public bool caught;
+
+	private float forceFollowTimer = 0;
 
 	void Start()
 	{
@@ -49,6 +55,7 @@ public class Animal : MonoBehaviour
 
 		if (isAttacking)
 		{
+			if (Vector2.Distance(enemyToFollow.transform.position, transform.position) > 1.2) { enemyPosition = enemyToFollow.transform.position; }
 			GetComponent<Rigidbody2D>().AddForce((enemyPosition - transform.position) * moveForce);
 		}
 	}
@@ -63,6 +70,7 @@ public class Animal : MonoBehaviour
 			queueIndex = other.transform.parent.gameObject.GetComponent<Player>().getCurrentAnimalQueueSize();
 			isMoving = true;
 			caught = true;
+			forceFollowTimer = Time.timeSinceLevelLoad;
 		}
 
 		// When animal is returning, add animal back to queue
@@ -76,7 +84,7 @@ public class Animal : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		// If your animal collides with an enemy
-		if (other.gameObject.CompareTag("Enemy"))
+		if (other.gameObject.CompareTag("Enemy") && (Time.timeSinceLevelLoad - forceFollowTimer) > 1)
 		{
 			Debug.Log("An animal has hit an enemy!");
 
@@ -85,9 +93,28 @@ public class Animal : MonoBehaviour
 			StopAllCoroutines();
 
 			isAttacking = true;
+			if (isMoving == true)
+			{
+				caught = false;
+				int temp = queueIndex;
+				GameObject player = GameObject.Find("Player");
+
+				player.GetComponent<Player>().removeFromQueue(this);
+				queueIndex = player.GetComponent<Player>().getCurrentAnimalQueueSize();
+				player.GetComponent<Player>().queueManagementExtras();
+				player.GetComponent<Player>().updateQueuePositions(temp);
+
+			}
 			isMoving = false;
+			enemyToFollow = other.gameObject;
 			enemyPosition = other.transform.position;
-			// TODO: Make the enemy stop moving
+
+			//add set up the target container
+			TargetContainer tc = other.gameObject.GetComponent<IEnemy>().targetContainer;
+
+			tc.AddTarget(new Target(gameObject, tc));
+
+			// TODO: Make the enemy stop moving (This was taken care of by me (Ian) if I understand correctly)
 		}
 	}
 
