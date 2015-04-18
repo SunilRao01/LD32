@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
 	void Start () 
 	{
-		animalQueuePortraits = GameObject.Find("AnimalQueuePortraits");
+		animalQueuePortraits = GameObject.Find("Canvas");
 
 		pingObject.GetComponent<MeshRenderer>().enabled = false;
 
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 		handleAnimalCall();
 		handleShooting();
 
-		Debug.Log("Animals in queue: " + animalQueue.Count.ToString());
+		//Debug.Log("Animals in queue: " + animalQueue.Count.ToString());
 	}
 
 	void handleMovement()

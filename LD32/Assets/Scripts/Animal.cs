@@ -15,8 +15,10 @@ public class Animal : MonoBehaviour
 
 	public float moveForce;
 	public bool isMoving;
+	public bool isAttacking;
 	private bool isShot;
 	private Transform playerTransform;
+	private Vector3 enemyPosition;
 	private Vector3 targetPosition;
 	public int queueIndex;
 	public bool caught;
@@ -24,6 +26,7 @@ public class Animal : MonoBehaviour
 	void Start()
 	{
 		playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+		enemyPosition = new Vector3(0, 0, 0);
 	}
 
 	void Update()
@@ -43,6 +46,11 @@ public class Animal : MonoBehaviour
 		{
 			GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position) * moveForce);
 		}
+
+		if (isAttacking)
+		{
+			GetComponent<Rigidbody2D>().AddForce((enemyPosition - transform.position) * moveForce);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -61,6 +69,23 @@ public class Animal : MonoBehaviour
 		{
 			other.transform.parent.gameObject.GetComponent<Player>().addAnimal(this);
 			isShot = false;
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		// If your animal collides with an enemy
+		if (other.gameObject.CompareTag("Enemy"))
+		{
+			Debug.Log("An animal has hit an enemy!");
+
+			// Don't make the player go back to the player
+			StopCoroutine(waitAndComeBack());
+
+			isAttacking = true;
+			isMoving = false;
+			enemyPosition = other.transform.position;
+			// TODO: Make the enemy stop moving
 		}
 	}
 
