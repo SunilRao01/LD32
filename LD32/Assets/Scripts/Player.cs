@@ -27,6 +27,11 @@ public class Player : MonoBehaviour
 		pingObject = transform.FindChild("PingSphere").gameObject;
 		pingObject.GetComponent<CircleCollider2D>().enabled = false;
 		originalPingScale = pingObject.transform.localScale;
+
+		Physics2D.IgnoreLayerCollision(8, 9);
+		Physics2D.IgnoreLayerCollision(9, 9);
+		Physics.IgnoreLayerCollision(8, 9);
+		Physics.IgnoreLayerCollision(9, 9);
 	}
 
 	void Start () 
@@ -41,6 +46,11 @@ public class Player : MonoBehaviour
 		handleMovment();
 		handleAimer();
 		handleAnimalCall();
+		handleShooting();
+		Physics2D.IgnoreLayerCollision(8, 9);
+		Physics2D.IgnoreLayerCollision(9, 9);
+		Physics.IgnoreLayerCollision(8, 9);
+		Physics.IgnoreLayerCollision(9, 9);
 	}
 
 	void handleMovment()
@@ -65,6 +75,17 @@ public class Player : MonoBehaviour
 		aimerPosition.z = 0;
 
 		aimerObject.transform.up = aimerPosition;
+	}
+
+	void handleShooting()
+	{
+		// Direction to shoot animal: aimerObject.transform.up
+
+		if (Input.GetMouseButtonDown(0))
+		{
+			Debug.Log("Shoot animal!");
+			animalQueue[0].shootAnimal(aimerObject.transform.up);
+		}
 	}
 
 	void handleAnimalCall()

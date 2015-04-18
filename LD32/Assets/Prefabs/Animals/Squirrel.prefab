@@ -56,9 +56,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: .00131559372, y: -.00131487846}
   serializedVersion: 2
-  m_Size: {x: .519999981, y: .930000007}
+  m_Size: {x: .270131052, y: .480233073}
 --- !u!114 &11439036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
   damageMultiplier: 0
   strongAgainst: 
   weakAgainst: 
-  moveForce: 0
+  moveForce: 5
   queueIndex: 0
 --- !u!212 &21275390
 SpriteRenderer:
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 14b909ab24dd77c46ad8366c9b70491c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 632e78fa6780eeb42a0d4a95978926f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

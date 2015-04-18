@@ -44,4 +44,9 @@ public class Animal : MonoBehaviour
 			isMoving = true;
 		}
 	}
+
+	public void shootAnimal(Vector3 direction)
+	{
+		GetComponent<Rigidbody2D>().AddForce(direction * 1000);
+	}
 }
