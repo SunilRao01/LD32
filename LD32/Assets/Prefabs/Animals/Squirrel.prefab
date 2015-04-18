@@ -12,7 +12,7 @@ GameObject:
   - 61: {fileID: 6134020}
   - 50: {fileID: 5077198}
   - 114: {fileID: 11439036}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Squirrel
   m_TagString: Animal
   m_Icon: {fileID: 0}
@@ -76,6 +76,7 @@ MonoBehaviour:
   damageMultiplier: 0
   strongAgainst: 
   weakAgainst: 
+  moveForce: 0
   queueIndex: 0
 --- !u!212 &21275390
 SpriteRenderer:

@@ -12,6 +12,7 @@ public class Animal : MonoBehaviour
 	public string strongAgainst;
 	public string weakAgainst;
 
+	public float moveForce;
 	private bool isMoving;
 	private Transform playerTransform;
 	private Vector3 targetPosition;
@@ -29,7 +30,7 @@ public class Animal : MonoBehaviour
 
 		if (isMoving)
 		{
-			GetComponent<Rigidbody2D>().AddForce(targetPosition - transform.position);
+			GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position) * moveForce);
 		}
 	}
 

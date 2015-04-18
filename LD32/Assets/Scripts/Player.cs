@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
 		pingObject.GetComponent<MeshRenderer>().enabled = false;
 
 		animalQueue = new List<Animal>();
-		Physics.IgnoreLayerCollision(8, 9);
 	}
 	
 	void Update () 
@@ -42,7 +41,6 @@ public class Player : MonoBehaviour
 		handleMovment();
 		handleAimer();
 		handleAnimalCall();
-		Physics.IgnoreLayerCollision(8, 9);
 	}
 
 	void handleMovment()
