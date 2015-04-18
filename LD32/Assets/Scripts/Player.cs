@@ -47,10 +47,6 @@ public class Player : MonoBehaviour
 		handleAimer();
 		handleAnimalCall();
 		handleShooting();
-		Physics2D.IgnoreLayerCollision(8, 9);
-		Physics2D.IgnoreLayerCollision(9, 9);
-		Physics.IgnoreLayerCollision(8, 9);
-		Physics.IgnoreLayerCollision(9, 9);
 	}
 
 	void handleMovment()
@@ -62,6 +58,7 @@ public class Player : MonoBehaviour
 			movementDirection.x = Input.GetAxisRaw("Horizontal") * movementForce;
 			movementDirection.y = Input.GetAxisRaw("Vertical") * movementForce;
 		}
+	
 
 		rigidbody.AddForce(movementDirection);
 	}
