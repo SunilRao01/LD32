@@ -208,6 +208,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 138454, guid: d21249a01ca92cd41bbf97ff7b589c24, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059186, guid: d21249a01ca92cd41bbf97ff7b589c24, type: 2}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429658, guid: d21249a01ca92cd41bbf97ff7b589c24, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d21249a01ca92cd41bbf97ff7b589c24, type: 2}
@@ -222,7 +230,7 @@ GameObject:
   - 4: {fileID: 460837370}
   - 114: {fileID: 460837372}
   - 50: {fileID: 460837371}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,27 +660,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1547217250 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 144492, guid: cdc141c031a80424489e12b8f9fdb005, type: 2}
-  m_PrefabInternal: {fileID: 1854693140}
---- !u!114 &1547217251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1547217250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba33d2083bca03d41a047ef0a077b540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  attackDamage: 0
-  defense: 0
-  damageMultiplier: 0
-  strongAgainst: 
-  weakAgainst: 
 --- !u!1 &1702073504 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 138454, guid: d21249a01ca92cd41bbf97ff7b589c24, type: 2}
@@ -694,6 +681,7 @@ MonoBehaviour:
   damageMultiplier: 0
   strongAgainst: 
   weakAgainst: 
+  queueIndex: 0
 --- !u!1001 &1854693140
 Prefab:
   m_ObjectHideFlags: 0
@@ -733,8 +721,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11452912, guid: cdc141c031a80424489e12b8f9fdb005, type: 2}
+    - target: {fileID: 144492, guid: cdc141c031a80424489e12b8f9fdb005, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cdc141c031a80424489e12b8f9fdb005, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1936849915
