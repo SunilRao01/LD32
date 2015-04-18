@@ -58,6 +58,7 @@ public class Animal : MonoBehaviour
 		if (other.gameObject.name == "PingSphere" && !isMoving && !caught)
 		{
 			Debug.Log("You have pinged an animal");
+			isAttacking = false;
 			other.transform.parent.gameObject.GetComponent<Player>().addAnimal(this);
 			queueIndex = other.transform.parent.gameObject.GetComponent<Player>().getCurrentAnimalQueueSize();
 			isMoving = true;
@@ -65,7 +66,7 @@ public class Animal : MonoBehaviour
 		}
 
 		// When animal is returning, add animal back to queue
-		if (other.gameObject.name == "PlayerSprite" && isShot)
+		if (other.gameObject.name == "PlayerSprite" && isShot && !isAttacking)
 		{
 			other.transform.parent.gameObject.GetComponent<Player>().addAnimal(this);
 			isShot = false;
@@ -81,6 +82,7 @@ public class Animal : MonoBehaviour
 
 			// Don't make the player go back to the player
 			StopCoroutine(waitAndComeBack());
+			StopAllCoroutines();
 
 			isAttacking = true;
 			isMoving = false;

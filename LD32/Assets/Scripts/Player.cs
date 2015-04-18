@@ -131,6 +131,10 @@ public class Player : MonoBehaviour
 			    iTween.Hash("scale", scaleTarget, "time", 0.5f, "OnCompleteTarget", gameObject, "OnComplete", "afterPing"));
 			isCalling = true;
 		}
+		else
+		{
+			isCalling = false;
+		}
 	}
 
 	public Animal getAnimal(int animalIndex)
