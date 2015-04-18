@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour 
 {
@@ -19,6 +20,11 @@ public class Player : MonoBehaviour
 	// Animal Queue
 	private List<Animal> animalQueue;
 	public int maxAnimalQueueSize;
+	private GameObject animalQueuePortraits;
+
+	// Animal portraits
+	public Sprite squirrelSprite;
+	public Sprite birdSprite;
 
 	void Awake()
 	{
@@ -28,12 +34,15 @@ public class Player : MonoBehaviour
 		pingObject.GetComponent<CircleCollider2D>().enabled = false;
 		originalPingScale = pingObject.transform.localScale;
 
+		// Ignore Animal/Animal and Player/Animal collision
 		Physics2D.IgnoreLayerCollision(8, 9);
 		Physics2D.IgnoreLayerCollision(9, 9);
 	}
 
 	void Start () 
 	{
+		animalQueuePortraits = GameObject.Find("AnimalQueuePortraits");
+
 		pingObject.GetComponent<MeshRenderer>().enabled = false;
 
 		animalQueue = new List<Animal>();
@@ -41,7 +50,7 @@ public class Player : MonoBehaviour
 	
 	void Update () 
 	{
-		handleMovment();
+		handleMovement();
 		handleAimer();
 		handleAnimalCall();
 		handleShooting();
@@ -49,7 +58,7 @@ public class Player : MonoBehaviour
 		Debug.Log("Animals in queue: " + animalQueue.Count.ToString());
 	}
 
-	void handleMovment()
+	void handleMovement()
 	{
 		Vector2 movementDirection = new Vector2(0, 0);
 
@@ -83,6 +92,23 @@ public class Player : MonoBehaviour
 			animalQueue[0].caught = false;
 			animalQueue[0].queueIndex = animalQueue.Count;
 			animalQueue.RemoveAt(0);
+
+			Color newColor = animalQueuePortraits.transform.GetChild(animalQueue.Count).GetComponent<Image>().color;
+			newColor.a = 0;
+			animalQueuePortraits.transform.GetChild(animalQueue.Count).GetComponent<Image>().color = newColor;
+
+			// Update portraits
+			for (int i = 0; i < animalQueue.Count; i++)
+			{
+				if (animalQueue[i].name == "Squirrel")
+				{
+					animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = squirrelSprite;
+				}
+				else if (animalQueue[i].name == "Bird")
+				{
+					animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = birdSprite;
+				}
+			}
 
 			if (animalQueue.Count > 0)
 			{
@@ -123,14 +149,37 @@ public class Player : MonoBehaviour
 		{
 			animalQueue.Add(inputAnimal);
 			//animalQueue[animalQueue.Count-1].queueIndex = animalQueue.Count
+
+			// update animal portraits in GUI
+			Color newColor = animalQueuePortraits.transform.GetChild(animalQueue.Count-1).GetComponent<Image>().color;
+			newColor.a = 1;
+			animalQueuePortraits.transform.GetChild(animalQueue.Count-1).GetComponent<Image>().color = newColor;
+			if (inputAnimal.name == "Squirrel")
+			{
+				animalQueuePortraits.transform.GetChild(animalQueue.Count-1).GetComponent<Image>().sprite = squirrelSprite;
+			}
+			else if (inputAnimal.name == "Bird")
+			{
+				animalQueuePortraits.transform.GetChild(animalQueue.Count-1).GetComponent<Image>().sprite = birdSprite;
+			}
 		}
 	}
 
 	void updateQueuePositions()
 	{
+		// Update order in line
 		for (int i = 0; i < animalQueue.Count; i++)
 		{
 			animalQueue[i].queueIndex--;
+
+			if (animalQueue[i].name == "Squirrel")
+			{
+				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = squirrelSprite;
+			}
+			else if (animalQueue[i].name == "Bird")
+			{
+				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = birdSprite;
+			}
 		}
 	}
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Animal : MonoBehaviour
 {
@@ -27,8 +28,16 @@ public class Animal : MonoBehaviour
 
 	void Update()
 	{
-		targetPosition = playerTransform.position;
-		targetPosition.y -= 1.5f * queueIndex;
+		if (queueIndex <= 1)
+		{
+			targetPosition = playerTransform.position;
+			targetPosition.y -= 1.2f * queueIndex;
+		}
+		else
+		{
+			targetPosition = playerTransform.position;
+			targetPosition.y -= 1.0f * queueIndex;
+		}
 
 		if (isMoving)
 		{
