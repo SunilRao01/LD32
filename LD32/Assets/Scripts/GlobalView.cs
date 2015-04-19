@@ -35,6 +35,8 @@ namespace Hamelin
 		public GameObject deer;
 		public AudioClip[] screams;
 
+		public GameObject player;
+
 		public int Score;
 
 		// Wave/Timer Labels
@@ -43,6 +45,8 @@ namespace Hamelin
 		private Text waveTimerLabel;
 		private float timer;
 		private bool isCounting;
+
+		private bool isFresh = true;
 
 		void Awake()
 		{
@@ -61,8 +65,20 @@ namespace Hamelin
 
 		void Update()
 		{
+			if (!isCounting) {
+				if (isFresh) {
+					Application.LoadLevel("ExplorationScene2");
+					isFresh = false;
+					player.transform.position = new Vector3(6.3f, 0f);
+				}
+			}
 			if (isCounting)
 			{
+				if (isFresh) {
+					Application.LoadLevel ("Sandbox");
+					isFresh = false;
+					player.transform.position = new Vector3(-117.7f, -47.3f);
+				}
 				timer += Time.deltaTime;
 			}
 
@@ -70,7 +86,7 @@ namespace Hamelin
 			float seconds = Mathf.RoundToInt(timer);
 			waveTimerLabel.text = (60 - seconds).ToString();
 
-			if (Time.timeSinceLevelLoad - time > nextTime) 
+			if (Time.timeSinceLevelLoad - time > nextTime && isCounting) 
 			{
 				// Set a random timed interval before spawning next 
 				float minTime = minEnemySpawnTime - currentWave;
@@ -113,11 +129,13 @@ namespace Hamelin
 				currentWave++;
 				timer = 0;
 				isCounting = false;
+				isFresh = true;
 				
 				// TODO: Give the player a 5 second breather before the next wave starts
-				yield return new WaitForSeconds(5);
+				yield return new WaitForSeconds(60);
 				
 				isCounting = true;
+				isFresh = true;
 			}
 		}
 	}

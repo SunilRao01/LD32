@@ -73,6 +73,8 @@ public class Animal : MonoBehaviour
 		{
 			if (Vector2.Distance(targetObject.transform.position, transform.position) > 1.2) { targetPosition_safe = targetObject.transform.position; }
 			GetComponent<Rigidbody2D>().AddForce((targetPosition_safe - transform .position) * moveForce);
+
+			//GetComponent<Animator>().SetBool("attack", true);
 		}
 	}
 
@@ -98,18 +100,21 @@ public class Animal : MonoBehaviour
 	{
 		if (other.gameObject.name == "PingSphere" && !isMoving && !caught)
 		{
-			//Debug.Log("You have pinged an animal");
-			isAttacking = false;
-			other.transform.parent.gameObject.GetComponent<Player>().addAnimal(this);
-			queueIndex = other.transform.parent.gameObject.GetComponent<Player>().getCurrentAnimalQueueSize();
-			isMoving = true;
-			caught = true;
-			Target t;
-			while ((t = targetContainer.GetTarget()) != null)
+			if (other.gameObject.transform.parent.GetComponent<Player>().getCurrentAnimalQueueSize() < 6)
 			{
-				targetContainer.RemoveTarget(t);
+				//Debug.Log("You have pinged an animal");
+				isAttacking = false;
+				other.transform.parent.gameObject.GetComponent<Player>().addAnimal(this);
+				queueIndex = other.transform.parent.gameObject.GetComponent<Player>().getCurrentAnimalQueueSize();
+				isMoving = true;
+				caught = true;
+				Target t;
+				while ((t = targetContainer.GetTarget()) != null)
+				{
+					targetContainer.RemoveTarget(t);
+				}
+				forceFollowTimer = Time.timeSinceLevelLoad;
 			}
-			forceFollowTimer = Time.timeSinceLevelLoad;
 		}
 
 		// When animal is returning, add animal back to queue

@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<cakewalkproject version="1.0"><application><name>SONAR</name><version>20.0.5.244</version><globalaudiofolder>C:\Cakewalk Projects\Audio Data</globalaudiofolder></application><project type="CWP"><audiofolder>C:\Projects\Unity\Ludum Dare 32\sonar\exploration theme\Audio</audiofolder><file><location>C:\Projects\Unity\Ludum Dare 32\sonar\exploration theme\exploration theme.cwp</location></file><assets><audio/><video/></assets></project></cakewalkproject>

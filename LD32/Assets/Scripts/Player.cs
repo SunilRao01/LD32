@@ -19,10 +19,11 @@ public class Player : MonoBehaviour
 
 	// Animal Queue
 	private List<Animal> animalQueue;
-	public int maxAnimalQueueSize;
 	private GameObject animalQueuePortraits;
 
 	public AudioClip[] piperNoise;
+
+	public GameObject canvas;
 
 	// Animal portraits
 	public Sprite squirrelSprite;
@@ -30,6 +31,11 @@ public class Player : MonoBehaviour
 
 	void Awake()
 	{
+		DontDestroyOnLoad (gameObject);
+		DontDestroyOnLoad (canvas);
+		DontDestroyOnLoad (GameObject.Find ("RegionContainer 1"));
+		DontDestroyOnLoad (GameObject.Find ("Deer"));
+
 		rigidbody = GetComponent<Rigidbody2D>();
 		aimerObject = transform.FindChild("AimerPivot").gameObject;
 		pingObject = transform.FindChild("PingSphere").gameObject;
@@ -43,6 +49,9 @@ public class Player : MonoBehaviour
 
 	void Start () 
 	{
+		// Keep player when moving from scenes
+		DontDestroyOnLoad(gameObject);
+
 		animalQueuePortraits = GameObject.Find("Canvas");
 
 		pingObject.GetComponent<MeshRenderer>().enabled = false;
@@ -135,7 +144,7 @@ public class Player : MonoBehaviour
 
 			if (animalQueue.Count > 0)
 			{
-				// TODO: Update Queue Position of animals in a smoother fashion
+				// Update Queue Position of animals in a smoother fashion
 				updateQueuePositions();
 			}
 		}
