@@ -102,5 +102,37 @@ namespace Hamelin
 		{
 			targets.Add (go);
 		}
+
+		protected float getAttackTime()
+		{
+			return 1.2f;
+		}
+		protected float getDamage()
+		{
+			return 2f;
+		}
+		protected float getHealth()
+		{
+			return currentHealth;
+		}
+		protected void setHealth(float newHealth)
+		{
+			currentHealth = newHealth;
+		}
+		protected int getPoints()
+		{
+			return 15;
+		}
+		protected float defenseAdjust (float damage)
+		{
+			return damage/.9f;
+		}
+		protected bool getExtraDamage(int special)
+		{
+			if (special == 0) {
+				return true;
+			}
+			return false;
+		}
 	}
 }

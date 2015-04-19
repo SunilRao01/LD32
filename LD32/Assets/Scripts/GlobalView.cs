@@ -19,7 +19,7 @@ namespace Hamelin
 		private float time = 0;
 		private float nextTime = 5;
 
-		private bool TESTING = false;
+		protected bool TESTING = false;
 
 		public AudioClip[] discovered;
 		public AudioClip[] damaged;

@@ -4,7 +4,7 @@ using Hamelin;
 
 namespace Hamelin
 {
-	public class BirdMask : PoacherView
+	public class SquirrelMask : PoacherView
 	{
 		private float currentHealth = 8;
 

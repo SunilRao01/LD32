@@ -30,7 +30,7 @@ namespace Hamelin
 		}
 		protected float defenseAdjust (float damage)
 		{
-			return damage/1.1;
+			return damage/1.1f;
 		}
 		protected bool getExtraDamage(int special)
 		{

@@ -16,7 +16,7 @@ namespace Hamelin
 		protected Vector2 offset;
 
 		protected float timer;
-		private float currentHealth = 15;
+		protected float currentHealth = 15;
 
 		public List<Target> selfAsTargets = new List<Target>();
 
@@ -71,7 +71,7 @@ namespace Hamelin
 		{
 			currentHealth = newHealth;
 		}
-		public bool takeDamage(float damage)
+		public bool takeDamage(float damage, float special)
 		{
 			setHealth (getHealth () - damage);
 			if (getHealth () <= 0) {
