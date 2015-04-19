@@ -30,6 +30,8 @@ namespace Hamelin
 		public float minEnemySpawnTime;
 		public float maxEnemySpawnTime;
 
+		public int Score;
+
 		void Start()
 		{
 			pathContainer = new PathContainer (regionContainer);
