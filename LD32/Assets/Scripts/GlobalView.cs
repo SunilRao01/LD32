@@ -37,8 +37,9 @@ namespace Hamelin
 
 		void Update()
 		{
-			if (Time.timeSinceLevelLoad - time > nextTime) {
-				nextTime = Random.Range(3.0f, 7.0f);
+			if (Time.timeSinceLevelLoad - time > nextTime) 
+			{
+				nextTime = Random.Range(minEnemySpawnTime, maxEnemySpawnTime);
 				time = Time.timeSinceLevelLoad;
 				GameObject myPoacher = GameObject.Instantiate(poacher);
 				myPoacher.GetComponent<PoacherView>().controller = new PathingController(pathContainer.getPath());

@@ -1421,6 +1421,14 @@ Prefab:
       propertyPath: discovered.Array.data[13]
       value: 
       objectReference: {fileID: 8300000, guid: 735c72de43feaf647bba674864ff9b58, type: 3}
+    - target: {fileID: 11494514, guid: 2a435ca9005af1a4ba667dae624437a3, type: 2}
+      propertyPath: minEnemySpawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494514, guid: 2a435ca9005af1a4ba667dae624437a3, type: 2}
+      propertyPath: maxEnemySpawnTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a435ca9005af1a4ba667dae624437a3, type: 2}
   m_IsPrefabParent: 0
