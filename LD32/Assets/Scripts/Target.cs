@@ -19,10 +19,9 @@ namespace Hamelin
 		{
 			return instance;
 		}
-		public void kill()
+		public void cleanReferences()
 		{
 			targetContainer.RemoveTarget (this);
-			GameObject.Destroy (instance);
 		}
 		
 	}

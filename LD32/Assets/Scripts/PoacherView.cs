@@ -22,7 +22,8 @@ namespace Hamelin
 		}
 		// Update is called once per frame
 		void Update () {
-
+			
+			updateAttack ();
 			updateTarget ();
 
 			if (!isActive) {
@@ -56,7 +57,7 @@ namespace Hamelin
 				if (isFollowing)
 				{
 					if (Vector2.Distance(targetObject.transform.position, transform.position) > 1.2) { targetPosition = targetObject.transform.position; }
-					GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position) * GlobalGO.MovementForce);
+					GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position + new Vector3(offset.x, offset.y)) * GlobalGO.MovementForce);
 				}
 				else
 				{

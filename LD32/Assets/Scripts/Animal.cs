@@ -2,9 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 using Hamelin;
+using System.Collections.Generic;
 
 public class Animal : MonoBehaviour
 {
+	public TargetContainer targetContainer = new TargetContainer ();
+
+	protected Target oldTarget;
+	protected GameObject targetObject;
+	protected Vector3 targetPosition;
+	protected Vector3 targetPosition_safe;
+	protected bool isFollowing = false;
+	protected Vector2 offset;
+
 	// Animal Stats
 	public int health;
 	public int attackDamage;
@@ -19,24 +29,32 @@ public class Animal : MonoBehaviour
 	public bool isAttacking;
 	private bool isShot;
 	private Transform playerTransform;
-	private Vector3 enemyPosition;
-	private Vector3 targetPosition;
-
-	private GameObject enemyToFollow;
 
 	public int queueIndex;
 	public bool caught;
 
+	private int state = 0;
+
+	private List<Target> selfAsTargets = new List<Target>();
+
+	private float currentHealth = 30;
+	private float timer;
+
 	private float forceFollowTimer = 0;
+
 
 	void Start()
 	{
 		playerTransform = GameObject.Find("Player").GetComponent<Transform>();
-		enemyPosition = new Vector3(0, 0, 0);
 	}
 
 	void Update()
 	{
+		Debug.Log (isAttacking);
+		updateTarget ();
+		if (targetObject != null) { updateAttack (); }
+		updateTarget ();
+
 		if (queueIndex <= 1)
 		{
 			targetPosition = playerTransform.position;
@@ -53,10 +71,28 @@ public class Animal : MonoBehaviour
 			GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position) * moveForce);
 		}
 
-		if (isAttacking)
+	 	if (isAttacking)
 		{
-			if (Vector2.Distance(enemyToFollow.transform.position, transform.position) > 1.2) { enemyPosition = enemyToFollow.transform.position; }
-			GetComponent<Rigidbody2D>().AddForce((enemyPosition - transform.position) * moveForce);
+			if (Vector2.Distance(targetObject.transform.position, transform.position) > 1.2) { targetPosition_safe = targetObject.transform.position; }
+			GetComponent<Rigidbody2D>().AddForce((targetPosition_safe - transform .position) * moveForce);
+		}
+	}
+
+	protected void updateTarget()
+	{
+		
+		Target t;
+		if ((t = targetContainer.GetTarget()) != oldTarget) {
+			offset = Random.insideUnitCircle / 3;
+			oldTarget = t;
+			if (oldTarget != null) {
+				targetObject = oldTarget.getGameObject ();
+				targetPosition_safe = targetObject.transform.position;
+				isAttacking = true;
+			} else {
+				isAttacking= false;
+			}
+			
 		}
 	}
 
@@ -64,7 +100,7 @@ public class Animal : MonoBehaviour
 	{
 		if (other.gameObject.name == "PingSphere" && !isMoving && !caught)
 		{
-			Debug.Log("You have pinged an animal");
+			//Debug.Log("You have pinged an animal");
 			isAttacking = false;
 			other.transform.parent.gameObject.GetComponent<Player>().addAnimal(this);
 			queueIndex = other.transform.parent.gameObject.GetComponent<Player>().getCurrentAnimalQueueSize();
@@ -86,7 +122,7 @@ public class Animal : MonoBehaviour
 		// If your animal collides with an enemy
 		if (other.gameObject.CompareTag("Enemy") && (Time.timeSinceLevelLoad - forceFollowTimer) > 1)
 		{
-			Debug.Log("An animal has hit an enemy!");
+			//Debug.Log("An animal has hit an enemy!");
 
 			// Don't make the player go back to the player
 			StopCoroutine(waitAndComeBack());
@@ -106,13 +142,17 @@ public class Animal : MonoBehaviour
 
 			}
 			isMoving = false;
-			enemyToFollow = other.gameObject;
-			enemyPosition = other.transform.position;
+
+			Target myTemp1 = new Target(other.gameObject, targetContainer);
+			other.gameObject.GetComponent<IEnemy>().selfAsTargets.Add(myTemp1);
+			targetContainer.AddTarget(myTemp1);
 
 			//add set up the target container
 			TargetContainer tc = other.gameObject.GetComponent<IEnemy>().targetContainer;
 
-			tc.AddTarget(new Target(gameObject, tc));
+			Target myTemp = new Target(gameObject, tc);
+			selfAsTargets.Add(myTemp);
+			tc.AddTarget(myTemp);
 
 			// TODO: Make the enemy stop moving (This was taken care of by me (Ian) if I understand correctly)
 		}
@@ -135,5 +175,58 @@ public class Animal : MonoBehaviour
 		yield return new WaitForSeconds(3.0f);
 		isMoving = true;
 
+	}
+
+	protected void updateAttack()
+	{
+		if (isAttacking && Vector2.Distance (targetPosition_safe, transform.position) < 1.2 && Time.timeSinceLevelLoad - timer > getAttackTime ()) {
+
+			timer = Time.timeSinceLevelLoad;
+			Vector2 vector = targetPosition_safe - transform.position;
+			Vector2 perpendicular = new Vector2(vector.y, -vector.x);
+			iTween.ShakePosition(gameObject, new Vector3(perpendicular.x, perpendicular.y) / 5, .1f);
+			if (targetObject.GetComponent<IEnemy>().takeDamage(getDamage ()))
+			{
+ 				//Debug.Log ("setting attack false: " + Time.timeSinceLevelLoad);
+				isAttacking = false;
+			}
+		}
+	}
+
+	protected virtual float getAttackTime()
+	{
+		return 1;
+	}
+	protected virtual float getDamage()
+	{
+		return 10;
+	}
+	protected virtual float getHealth()
+	{
+		return currentHealth;
+	}
+	protected virtual void setHealth (float newHealth)
+	{
+		currentHealth = newHealth;
+	}
+	public bool takeDamage(float damage)
+	{
+		setHealth (getHealth() - damage);
+		if (getHealth () <= 0) {
+			foreach (Target target in selfAsTargets)
+			{
+				target.cleanReferences ();
+			}
+			int temp = queueIndex;
+			GameObject player = GameObject.Find("Player");
+			
+			player.GetComponent<Player>().removeFromQueue(this);
+			queueIndex = player.GetComponent<Player>().getCurrentAnimalQueueSize();
+			player.GetComponent<Player>().queueManagementExtras();
+			player.GetComponent<Player>().updateQueuePositions(temp);
+			GameObject.Destroy (gameObject);
+			return true;
+		}
+		return false;
 	}
 }

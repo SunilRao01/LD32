@@ -11,7 +11,7 @@ namespace Hamelin
 		private bool isActive = false;
 		private GameObject nextNode = null;
 
-		private float timer;
+		private float timer_safe;
 		private float walkTime;
 		private float bushTime;
 
@@ -30,10 +30,11 @@ namespace Hamelin
 			rigidbody = GetComponent<Rigidbody2D> ();
 			walkTime = Random.Range (2.0f, 3.0f);
 			bushTime = Random.Range (10.0f, 18.0f);
-			timer = Time.timeSinceLevelLoad;
+			timer_safe = Time.timeSinceLevelLoad;
 		}
 		// Update is called once per frame
 		void Update () {
+			updateAttack ();
 			updateTarget ();
 
 			if (!isActive) {
@@ -67,16 +68,16 @@ namespace Hamelin
 				if (isFollowing)
 				{
 					if (Vector2.Distance(targetObject.transform.position, transform.position) > 1.2) { targetPosition = targetObject.transform.position; }
-					GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position) * GlobalGO.MovementForce);	
+					GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position + new Vector3(offset.x, offset.y)) * GlobalGO.MovementForce);	
 				}
 				else if (walking)
 				{
-					if (Time.timeSinceLevelLoad - timer > walkTime)
+					if (Time.timeSinceLevelLoad - timer_safe > walkTime)
 					{
 						Debug.Log("B");
 						walkTime = walkTime * 2/3;
 						walking = false;
-						timer = Time.timeSinceLevelLoad;
+						timer_safe = Time.timeSinceLevelLoad;
 					}
 					else
 					{
@@ -85,12 +86,12 @@ namespace Hamelin
 				}
 				else
 				{
-					if (Time.timeSinceLevelLoad - timer > bushTime)
+					if (Time.timeSinceLevelLoad - timer_safe > bushTime)
 					{
 						Debug.Log ("A");
 						bushTime = bushTime * 2/3;
 						walking = true;
-						timer = Time.timeSinceLevelLoad;
+						timer_safe = Time.timeSinceLevelLoad;
 					}
 
 				}
