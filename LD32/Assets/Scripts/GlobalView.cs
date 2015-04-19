@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using Hamelin;
 
 namespace Hamelin
@@ -31,23 +32,35 @@ namespace Hamelin
 		public float minEnemySpawnTime;
 		public float maxEnemySpawnTime;
 
-
+		private int currentWave;
+		private Text waveLabel;
 
 		public int Score;
+
+		void Awake()
+		{
+			waveLabel = GameObject.Find("WaveLabel").GetComponent<Text>();
+		}
 
 		void Start()
 		{
 			pathContainer = new PathContainer (regionContainer);
+			currentWave = 1;
+
+			StartCoroutine(waveTimer());
 		}
 
 		void Update()
 		{
+			waveLabel.text = "Wave " + currentWave.ToString();
+
 			if (Time.timeSinceLevelLoad - time > nextTime) 
 			{
+				// Set a random timed interval before spawning next 
 				nextTime = Random.Range(minEnemySpawnTime, maxEnemySpawnTime);
 				time = Time.timeSinceLevelLoad;
 
-				// Spawn poacher
+				// Spawn random type of poacher
 				GameObject myPoacher = GameObject.Instantiate(genericPoachers[Random.Range (0,genericPoachers.Count)]);
 				myPoacher.GetComponent<PoacherView>().controller = new PathingController(pathContainer.getPath());
 			}
@@ -66,6 +79,20 @@ namespace Hamelin
 		public AudioClip getEnemyKilledSound()
 		{
 			return killed[Random.Range(0,killed.Length)];
+		}
+
+		IEnumerator waveTimer()
+		{
+			while (true)
+			{
+				yield return new WaitForSeconds(2);
+
+				currentWave++;
+				// TODO: Restart Timer
+
+				// TODO: Give the player a 5 second breather before the next wave starts
+				//yield return new WaitForSeconds(5);
+			}
 		}
 	}
 }
