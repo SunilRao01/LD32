@@ -27,6 +27,11 @@ namespace Hamelin
 
 		public GameObject killSpeaker;
 
+		public float minEnemySpawnTime;
+		public float maxEnemySpawnTime;
+
+
+
 		public int Score;
 
 		void Start()
@@ -36,9 +41,12 @@ namespace Hamelin
 
 		void Update()
 		{
-			if (Time.timeSinceLevelLoad - time > nextTime) {
-				nextTime = Random.Range(3.0f, 7.0f);
+			if (Time.timeSinceLevelLoad - time > nextTime) 
+			{
+				nextTime = Random.Range(minEnemySpawnTime, maxEnemySpawnTime);
 				time = Time.timeSinceLevelLoad;
+
+				// Spawn poacher
 				GameObject myPoacher = GameObject.Instantiate(poacher);
 				myPoacher.GetComponent<PoacherView>().controller = new PathingController(pathContainer.getPath());
 			}
