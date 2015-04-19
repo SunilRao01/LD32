@@ -14,7 +14,7 @@ GameObject:
   - 61: {fileID: 6154092}
   - 82: {fileID: 8253022}
   m_Layer: 10
-  m_Name: Poacher
+  m_Name: BearMask
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
