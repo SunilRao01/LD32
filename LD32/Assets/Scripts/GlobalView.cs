@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Hamelin;
 
 namespace Hamelin
@@ -10,7 +11,7 @@ namespace Hamelin
 
 		public GameObject regionContainer;
 
-		public GameObject poacher;
+		public List<GameObject> genericPoachers;
 		public GameObject bushman;
 
 		public float MaxMovementSpeed = 5;
@@ -47,7 +48,7 @@ namespace Hamelin
 				time = Time.timeSinceLevelLoad;
 
 				// Spawn poacher
-				GameObject myPoacher = GameObject.Instantiate(poacher);
+				GameObject myPoacher = GameObject.Instantiate(genericPoachers[Random.Range (0,genericPoachers.Count)]);
 				myPoacher.GetComponent<PoacherView>().controller = new PathingController(pathContainer.getPath());
 			}
 		}
