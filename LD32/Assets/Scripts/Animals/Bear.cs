@@ -23,7 +23,11 @@ public class Bear : Animal
 	}
 	protected float defenseAdjust (float damage)
 	{
-		return damage/1.2;
+		return damage/1.2f;
+	}
+	protected int damageType()
+	{
+		return 2;
 	}
 }
 

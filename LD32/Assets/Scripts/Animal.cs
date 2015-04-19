@@ -191,7 +191,7 @@ public class Animal : MonoBehaviour
 			Vector2 vector = targetPosition_safe - transform.position;
 			Vector2 perpendicular = new Vector2(vector.y, -vector.x);
 			iTween.ShakePosition(gameObject, new Vector3(perpendicular.x, perpendicular.y) / 5, .1f);
-			if (targetObject.GetComponent<IEnemy>().takeDamage(getDamage ()))
+			if (targetObject.GetComponent<IEnemy>().takeDamage(getDamage (), damageType()))
 			{
  				//Debug.Log ("setting attack false: " + Time.timeSinceLevelLoad);
 				isAttacking = false;
@@ -218,6 +218,10 @@ public class Animal : MonoBehaviour
 	protected virtual float defenseAdjust (float damage)
 	{
 		return damage;
+	}
+	protected virtual int damageType()
+	{
+		return -1;
 	}
 
 	public bool takeDamage(float damage)

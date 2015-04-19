@@ -25,4 +25,8 @@ public class Bird : Animal {
 	{
 		return damage;
 	}
+	protected int damageType()
+	{
+		return 1;
+	}
 }
