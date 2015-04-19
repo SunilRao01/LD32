@@ -47,6 +47,9 @@ public class Player : MonoBehaviour
 
 	void Start () 
 	{
+		// Keep player when moving from scenes
+		DontDestroyOnLoad(gameObject);
+
 		animalQueuePortraits = GameObject.Find("Canvas");
 
 		pingObject.GetComponent<MeshRenderer>().enabled = false;
@@ -139,7 +142,7 @@ public class Player : MonoBehaviour
 
 			if (animalQueue.Count > 0)
 			{
-				// TODO: Update Queue Position of animals in a smoother fashion
+				// Update Queue Position of animals in a smoother fashion
 				updateQueuePositions();
 			}
 		}
