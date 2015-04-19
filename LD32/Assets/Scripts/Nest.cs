@@ -1,24 +1,60 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Nest : MonoBehaviour {
+public class Nest : MonoBehaviour 
+{
+	private bool canTransfer;
+	private int currentSize;
+	private GameObject playerObject;
 
-	// Use this for initialization
-	void Start () {
-	
+	void Awake()
+	{
+		playerObject = GameObject.Find("Player");
+	}
+
+	void Start () 
+	{
+		GetComponent<BlendColors>().enabled = false;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		if (canTransfer)
+		{
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				currentSize++;
+
+				// TODO: move animal
+				iTween.MoveTo(playerObject.GetComponent<Player>().getAnimal(0).gameObject, transform.position, 1.0f);
+				// TODO: If animal is first in nest, add label to nest for that animal type
+			}
+		}
+	}
+
+	public int getSize()
+	{
+		return currentSize;
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.name == "Player")
 		{
-			// TODO: Make buttons visible
+			GetComponent<BlendColors>().enabled = true;
 
+			canTransfer = true;
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.gameObject.name == "Player")
+		{
+			GetComponent<BlendColors>().enabled = false;
+			GetComponent<SpriteRenderer>().color = Color.white;
+
+			canTransfer = false;
 		}
 	}
 }
