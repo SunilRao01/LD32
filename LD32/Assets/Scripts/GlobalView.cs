@@ -27,6 +27,9 @@ namespace Hamelin
 
 		public GameObject killSpeaker;
 
+		public float minEnemySpawnTime;
+		public float maxEnemySpawnTime;
+
 		void Start()
 		{
 			pathContainer = new PathContainer (regionContainer);
