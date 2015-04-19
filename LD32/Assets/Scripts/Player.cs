@@ -83,6 +83,27 @@ public class Player : MonoBehaviour
 		aimerObject.transform.up = aimerPosition;
 	}
 
+	public void queueManagementExtras()
+	{
+		//what the fuck are you doing sunil.
+		Color newColor = animalQueuePortraits.transform.GetChild(animalQueue.Count).GetComponent<Image>().color;
+		newColor.a = 0;
+		animalQueuePortraits.transform.GetChild(animalQueue.Count).GetComponent<Image>().color = newColor;
+		
+		// Update portraits
+		for (int i = 0; i < animalQueue.Count; i++)
+		{
+			if (animalQueue[i].name == "Squirrel")
+			{
+				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = squirrelSprite;
+			}
+			else if (animalQueue[i].name == "Bird")
+			{
+				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = birdSprite;
+			}
+		}
+	}
+
 	void handleShooting()
 	{
 		// Direction to shoot animal: aimerObject.transform.up
@@ -147,6 +168,11 @@ public class Player : MonoBehaviour
 		return animalQueue.Count;
 	}
 
+	public void removeFromQueue(Animal animal)
+	{
+		animalQueue.Remove (animal);
+	}
+
 	public void addAnimal(Animal inputAnimal)
 	{
 		if (animalQueue.Count < 5)
@@ -177,6 +203,23 @@ public class Player : MonoBehaviour
 			animalQueue[i].queueIndex--;
 
 			if (animalQueue[i].name == "Squirrel")
+			{
+				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = squirrelSprite;
+			}
+			else if (animalQueue[i].name == "Bird")
+			{
+				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = birdSprite;
+			}
+		}
+	}
+
+	public void updateQueuePositions(int startingPos)
+	{
+		for (int i = startingPos; i < animalQueue.Count; i++) 
+		{
+			animalQueue[i].queueIndex--;
+
+			if (animalQueue[i].name == "Squirel")
 			{
 				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = squirrelSprite;
 			}

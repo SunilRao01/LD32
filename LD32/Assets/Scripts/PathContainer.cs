@@ -48,7 +48,7 @@ namespace Hamelin
 
 			regions = new GameObject[numRegions]; //create a region list
 			foreach (Transform region in RegionContainer.transform) {
-				Debug.Log (region.GetComponent<RegionView> ().UNIQUE_ID);
+				//Debug.Log (region.GetComponent<RegionView> ().UNIQUE_ID);
 				regions [region.GetComponent<RegionView> ().UNIQUE_ID] = region.gameObject;
 			}
 
