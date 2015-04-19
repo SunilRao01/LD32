@@ -31,7 +31,9 @@ namespace Hamelin
 		public float minEnemySpawnTime;
 		public float maxEnemySpawnTime;
 
+		public GameObject deer;
 
+		public AudioClip[] screams;
 
 		public int Score;
 
@@ -66,6 +68,11 @@ namespace Hamelin
 		public AudioClip getEnemyKilledSound()
 		{
 			return killed[Random.Range(0,killed.Length)];
+		}
+
+		public AudioClip getEnemyScreamsSound()
+		{
+			return screams[Random.Range(0,screams.Length)];
 		}
 	}
 }

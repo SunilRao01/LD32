@@ -14,6 +14,8 @@ namespace Hamelin
 		private GlobalView GlobalGO;
 		private Rigidbody2D rigidbody;
 
+		private bool attackingDeer = false;
+
 		void Start()
 		{
 			GlobalGO = Camera.main.GetComponentInChildren<GlobalView> ();
@@ -23,26 +25,45 @@ namespace Hamelin
 		// Update is called once per frame
 		void Update () {
 			
+			if (attackingDeer) {
+				if (Vector2.Distance(targetObject.transform.position, transform.position) > 1.2) { targetPosition = targetObject.transform.position; }
+				GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position + new Vector3(offset.x, offset.y)) * GlobalGO.MovementForce);
+
+				if (!GetComponent<AudioSource>().isPlaying)
+				{
+					GetComponent<AudioSource>().clip = GlobalGO.getEnemyScreamsSound();
+					GetComponent<AudioSource>().Play();
+				}
+
+				if (Time.timeSinceLevelLoad - timer > getAttackTime())
+				{
+					targetObject.GetComponent<DeerView>().takeDamage(this.getDamage());
+					timer = Time.timeSinceLevelLoad;
+				}
+				return;
+			}
 			updateAttack ();
 			updateTarget ();
 
 			if (!isActive) {
 				if (controller != null) {
-					GameObject node = controller.getNextNode();
+					GameObject node = controller.getNextNode ();
 					Debug.Log (node);
 					transform.position = node.transform.position;
 					controller.popNode ();
-					nextNode = controller.getNextNode();
+					nextNode = controller.getNextNode ();
 					isActive = true;
 				}
-			} 
+			}
 			else {
 				if (Vector3.Distance(transform.position, nextNode.transform.position) < 1) {
 					controller.popNode();
 					nextNode = controller.getNextNode(); //THIS NEEDS TO GET CHANGED
 					if (nextNode == null) { 
-						isActive = false;
-						Destroy (this.gameObject); 
+						attackingDeer = true;
+						targetObject = GlobalGO.deer;
+						offset = Random.insideUnitCircle / 3;
+						targetPosition = GlobalGO.deer.transform.position + new Vector3(offset.x, offset.y);
 						return;
 					} 
 				}
