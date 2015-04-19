@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
 
 	void Start () 
 	{
-		animalQueuePortraits = GameObject.Find("Canvas");
+		animalQueuePortraits = GameObject.Find("ScreenCanvas");
 
 		pingObject.GetComponent<MeshRenderer>().enabled = false;
 
