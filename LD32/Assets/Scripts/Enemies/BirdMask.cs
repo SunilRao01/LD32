@@ -8,31 +8,31 @@ namespace Hamelin
 	{
 		private float currentHealth = 12;
 
-		protected float getAttackTime()
+		protected override float getAttackTime()
 		{
 			return 1f;
 		}
-		protected float getDamage()
+		protected override float getDamage()
 		{
 			return 3f;
 		}
-		protected float getHealth()
+		protected override float getHealth()
 		{
 			return currentHealth;
 		}
-		protected void setHealth(float newHealth)
+		protected override void setHealth(float newHealth)
 		{
 			currentHealth = newHealth;
 		}
-		protected int getPoints()
+		protected override int getPoints()
 		{
 			return 10;
 		}
-		protected float defenseAdjust (float damage)
+		protected override float defenseAdjust (float damage)
 		{
 			return damage/1;
 		}
-		protected bool getExtraDamage(int special)
+		protected override bool getExtraDamage(int special)
 		{
 			if (special == 1) {
 				return true;

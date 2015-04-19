@@ -37,7 +37,6 @@ public class Animal : MonoBehaviour
 
 	private List<Target> selfAsTargets = new List<Target>();
 
-	protected float currentHealth = 30;
 	private float timer;
 
 	private float forceFollowTimer = 0;
@@ -186,12 +185,12 @@ public class Animal : MonoBehaviour
 	protected void updateAttack()
 	{
 		if (isAttacking && Vector2.Distance (targetPosition_safe, transform.position) < 1.2 && Time.timeSinceLevelLoad - timer > getAttackTime ()) {
-
+			Debug.Log ("attacking!!!");
 			timer = Time.timeSinceLevelLoad;
 			Vector2 vector = targetPosition_safe - transform.position;
 			Vector2 perpendicular = new Vector2(vector.y, -vector.x);
 			iTween.ShakePosition(gameObject, new Vector3(perpendicular.x, perpendicular.y) / 5, .1f);
-			if (targetObject.GetComponent<IEnemy>().takeDamage(getDamage (), damageType()))
+			if (targetObject.GetComponent<IEnemy>().takeDamage(this.getDamage (), this.damageType()))
 			{
  				//Debug.Log ("setting attack false: " + Time.timeSinceLevelLoad);
 				isAttacking = false;
@@ -209,11 +208,11 @@ public class Animal : MonoBehaviour
 	}
 	protected virtual float getHealth()
 	{
-		return currentHealth;
+		return 0;
 	}
 	protected virtual void setHealth (float newHealth)
 	{
-		currentHealth = newHealth;
+		return;
 	}
 
 	protected virtual float defenseAdjust (float damage)

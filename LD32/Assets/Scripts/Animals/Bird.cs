@@ -3,28 +3,29 @@ using System.Collections;
 
 public class Bird : Animal {
 
+	protected float currentHealth = 15f;
 
-	protected float getAttackTime()
+	protected override float getAttackTime()
 	{
 		return 1f;
 	}
-	protected float getDamage()
+	protected override float getDamage()
 	{
 		return 5f;
 	}
-	protected float getHealth()
+	protected override float getHealth()
 	{
 		return currentHealth;
 	}
-	protected void setHealth (float newHealth)
+	protected override void setHealth (float newHealth)
 	{
 		currentHealth = newHealth;
 	}
-	protected float defenseAdjust (float damage)
+	protected override float defenseAdjust (float damage)
 	{
 		return damage;
 	}
-	protected int damageType()
+	protected override  int damageType()
 	{
 		return 1;
 	}
