@@ -38,7 +38,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138454}
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 10
   m_AngularDrag: .0500000007
   m_GravityScale: 0
   m_FixedAngle: 1
@@ -76,8 +76,11 @@ MonoBehaviour:
   damageMultiplier: 0
   strongAgainst: 
   weakAgainst: 
-  moveForce: 5
+  moveForce: 20
+  isMoving: 0
+  isAttacking: 0
   queueIndex: 0
+  caught: 0
 --- !u!212 &21233128
 SpriteRenderer:
   m_ObjectHideFlags: 1

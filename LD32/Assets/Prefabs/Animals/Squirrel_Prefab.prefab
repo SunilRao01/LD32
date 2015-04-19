@@ -12,8 +12,9 @@ GameObject:
   - 61: {fileID: 6134020}
   - 50: {fileID: 5077198}
   - 114: {fileID: 11439036}
+  - 95: {fileID: 9587602}
   m_Layer: 9
-  m_Name: Squirrel
+  m_Name: Squirrel_Prefab
   m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,6 +60,23 @@ BoxCollider2D:
   m_Offset: {x: .00131559372, y: -.00131487846}
   serializedVersion: 2
   m_Size: {x: .270131052, y: .480233073}
+--- !u!95 &9587602
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144492}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb0627ac17a40d14b8431d3cb74e549e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11439036
 MonoBehaviour:
   m_ObjectHideFlags: 1
