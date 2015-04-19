@@ -12,6 +12,8 @@ public class DeerView : MonoBehaviour {
 			GameObject player = Camera.main.GetComponentInChildren<GlobalView>().player;
 			GameObject.Destroy (player.GetComponent<Player>().canvas);
 			GameObject.Destroy(player);
+			GameObject.Destroy (GameObject.Find ("RegionContainer 1"));
+			GameObject.Destroy (gameObject);
 			Application.LoadLevel ("Loader");
 		}
 	}

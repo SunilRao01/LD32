@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 	{
 		DontDestroyOnLoad (gameObject);
 		DontDestroyOnLoad (canvas);
+		DontDestroyOnLoad (GameObject.Find ("RegionContainer 1"));
+		DontDestroyOnLoad (GameObject.Find ("Deer"));
 
 		rigidbody = GetComponent<Rigidbody2D>();
 		aimerObject = transform.FindChild("AimerPivot").gameObject;

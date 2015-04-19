@@ -68,11 +68,17 @@ namespace Hamelin
 			if (!isCounting) {
 				if (isFresh) {
 					Application.LoadLevel("ExplorationScene2");
+					isFresh = false;
+					player.transform.position = new Vector3(6.3f, 0f);
 				}
 			}
 			if (isCounting)
 			{
-				isFresh = true;
+				if (isFresh) {
+					Application.LoadLevel ("Sandbox");
+					isFresh = false;
+					player.transform.position = new Vector3(-117.7f, -47.3f);
+				}
 				timer += Time.deltaTime;
 			}
 
@@ -123,11 +129,13 @@ namespace Hamelin
 				currentWave++;
 				timer = 0;
 				isCounting = false;
+				isFresh = true;
 				
 				// TODO: Give the player a 5 second breather before the next wave starts
 				yield return new WaitForSeconds(60);
 				
 				isCounting = true;
+				isFresh = true;
 			}
 		}
 	}
