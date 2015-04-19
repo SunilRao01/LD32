@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
 
 	void Awake()
 	{
+		DontDestroyOnLoad (gameObject);
+
 		rigidbody = GetComponent<Rigidbody2D>();
 		aimerObject = transform.FindChild("AimerPivot").gameObject;
 		pingObject = transform.FindChild("PingSphere").gameObject;

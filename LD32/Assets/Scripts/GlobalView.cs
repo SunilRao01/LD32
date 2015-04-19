@@ -35,6 +35,8 @@ namespace Hamelin
 		public GameObject deer;
 		public AudioClip[] screams;
 
+		public GameObject player;
+
 		public int Score;
 
 		// Wave/Timer Labels
@@ -43,6 +45,8 @@ namespace Hamelin
 		private Text waveTimerLabel;
 		private float timer;
 		private bool isCounting;
+
+		private bool isFresh = true;
 
 		void Awake()
 		{
@@ -61,8 +65,14 @@ namespace Hamelin
 
 		void Update()
 		{
+			if (!isCounting) {
+				if (isFresh) {
+					Application.LoadLevel("ExplorationScene2");
+				}
+			}
 			if (isCounting)
 			{
+				isFresh = true;
 				timer += Time.deltaTime;
 			}
 
@@ -115,7 +125,7 @@ namespace Hamelin
 				isCounting = false;
 				
 				// TODO: Give the player a 5 second breather before the next wave starts
-				//yield return new WaitForSeconds(5);
+				yield return new WaitForSeconds(60);
 				
 				isCounting = true;
 			}

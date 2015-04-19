@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Hamelin;
 
 public class DeerView : MonoBehaviour {
 	private float currentHealth = 50;
@@ -8,7 +9,8 @@ public class DeerView : MonoBehaviour {
 	{
 		currentHealth -= damage;
 		if (currentHealth <= 0) {
-			Application.LoadLevel ("Sandbox");
+			GameObject.Destroy(Camera.main.GetComponentInChildren<GlobalView>().player);
+			Application.LoadLevel ("Loader");
 		}
 	}
 }
