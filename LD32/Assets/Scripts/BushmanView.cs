@@ -23,8 +23,6 @@ namespace Hamelin
 		private Rigidbody2D rigidbody;
 
 		private List<GameObject> targets;
-
-		private float currentHealth = 8;
 		
 		void Start()
 		{

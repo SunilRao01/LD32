@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Bird : Animal {
 
-	protected float currentHealth = 15f;
 
 	protected float getAttackTime()
 	{

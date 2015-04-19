@@ -19,18 +19,13 @@ namespace Hamelin
 		private float time = 0;
 		private float nextTime = 5;
 
-		private bool TESTING = false;
+		protected bool TESTING = false;
 
 		public AudioClip[] discovered;
 		public AudioClip[] damaged;
 		public AudioClip[] killed;
 
 		public GameObject killSpeaker;
-
-		public float minEnemySpawnTime;
-		public float maxEnemySpawnTime;
-
-		public int Score;
 
 		void Start()
 		{
@@ -39,9 +34,8 @@ namespace Hamelin
 
 		void Update()
 		{
-			if (Time.timeSinceLevelLoad - time > nextTime) 
-			{
-				nextTime = Random.Range(minEnemySpawnTime, maxEnemySpawnTime);
+			if (Time.timeSinceLevelLoad - time > nextTime) {
+				nextTime = Random.Range(3.0f, 7.0f);
 				time = Time.timeSinceLevelLoad;
 				GameObject myPoacher = GameObject.Instantiate(poacher);
 				myPoacher.GetComponent<PoacherView>().controller = new PathingController(pathContainer.getPath());

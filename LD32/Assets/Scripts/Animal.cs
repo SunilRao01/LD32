@@ -37,7 +37,7 @@ public class Animal : MonoBehaviour
 
 	private List<Target> selfAsTargets = new List<Target>();
 
-	private float currentHealth = 30;
+	protected float currentHealth = 30;
 	private float timer;
 
 	private float forceFollowTimer = 0;
@@ -124,7 +124,7 @@ public class Animal : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		// If your animal collides with an enemy
-		if (other.gameObject.CompareTag("Enemy") && (Time.timeSinceLevelLoad - forceFollowTimer) > 1 && isMoving)
+		if (other.gameObject.CompareTag("Enemy") && (Time.timeSinceLevelLoad - forceFollowTimer) > 1)
 		{
 			//Debug.Log("An animal has hit an enemy!");
 
@@ -215,6 +215,7 @@ public class Animal : MonoBehaviour
 	{
 		currentHealth = newHealth;
 	}
+
 	protected virtual float defenseAdjust (float damage)
 	{
 		return damage;
@@ -226,7 +227,7 @@ public class Animal : MonoBehaviour
 
 	public bool takeDamage(float damage)
 	{
-		setHealth (getHealth() - defenseAdjust(damage));
+		setHealth (getHealth() - damage);
 		if (getHealth () <= 0) {
 			foreach (Target target in selfAsTargets)
 			{
