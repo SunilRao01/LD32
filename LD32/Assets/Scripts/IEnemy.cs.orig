@@ -16,6 +16,10 @@ namespace Hamelin
 		protected Vector2 offset;
 
 		protected float timer;
+<<<<<<< HEAD
+=======
+		protected float currentHealth = 15;
+>>>>>>> 192964f52d7087a70d19a25f1fcce551630ef6d7
 
 		public List<Target> selfAsTargets = new List<Target>();
 
@@ -70,8 +74,9 @@ namespace Hamelin
 		{
 			return;
 		}
-		protected virtual int getPoints()
+		public bool takeDamage(float damage, float special)
 		{
+<<<<<<< HEAD
 			return 10;
 		}
 		protected virtual bool getExtraDamage(int special)
@@ -87,6 +92,8 @@ namespace Hamelin
 			if (getExtraDamage (special)) {
 				damage += 5;
 			}
+=======
+>>>>>>> 192964f52d7087a70d19a25f1fcce551630ef6d7
 			setHealth (getHealth () - damage);
 			if (getHealth () <= 0) {
 				Camera.main.GetComponentInChildren<GlobalView>().Score += getPoints();

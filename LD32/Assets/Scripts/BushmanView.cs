@@ -22,6 +22,8 @@ namespace Hamelin
 		private GlobalView GlobalGO;
 		private Rigidbody2D rigidbody;
 
+		private float currentHealth = 8f;
+
 		private List<GameObject> targets;
 		
 		void Start()

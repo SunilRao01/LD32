@@ -27,6 +27,8 @@ namespace Hamelin
 
 		public GameObject killSpeaker;
 
+		public int Score;
+
 		void Start()
 		{
 			pathContainer = new PathContainer (regionContainer);
