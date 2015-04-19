@@ -9,7 +9,9 @@ public class DeerView : MonoBehaviour {
 	{
 		currentHealth -= damage;
 		if (currentHealth <= 0) {
-			GameObject.Destroy(Camera.main.GetComponentInChildren<GlobalView>().player);
+			GameObject player = Camera.main.GetComponentInChildren<GlobalView>().player;
+			GameObject.Destroy (player.GetComponent<Player>().canvas);
+			GameObject.Destroy(player);
 			Application.LoadLevel ("Loader");
 		}
 	}

@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
 
 	public AudioClip[] piperNoise;
 
+	public GameObject canvas;
+
 	// Animal portraits
 	public Sprite squirrelSprite;
 	public Sprite birdSprite;
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
 	void Awake()
 	{
 		DontDestroyOnLoad (gameObject);
+		DontDestroyOnLoad (canvas);
 
 		rigidbody = GetComponent<Rigidbody2D>();
 		aimerObject = transform.FindChild("AimerPivot").gameObject;
