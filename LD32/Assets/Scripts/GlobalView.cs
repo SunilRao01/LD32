@@ -70,7 +70,7 @@ namespace Hamelin
 			float seconds = Mathf.RoundToInt(timer);
 			waveTimerLabel.text = (60 - seconds).ToString();
 
-			if (Time.timeSinceLevelLoad - time > nextTime) 
+			if (Time.timeSinceLevelLoad - time > nextTime && isCounting) 
 			{
 				// Set a random timed interval before spawning next 
 				float minTime = minEnemySpawnTime - currentWave;
@@ -115,7 +115,7 @@ namespace Hamelin
 				isCounting = false;
 				
 				// TODO: Give the player a 5 second breather before the next wave starts
-				//yield return new WaitForSeconds(5);
+				yield return new WaitForSeconds(5);
 				
 				isCounting = true;
 			}
