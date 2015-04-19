@@ -3,26 +3,5 @@ using System.Collections;
 
 public class Bird : Animal {
 
-	protected float currentHealth = 15f;
 
-	protected float getAttackTime()
-	{
-		return 1f;
-	}
-	protected float getDamage()
-	{
-		return 5f;
-	}
-	protected float getHealth()
-	{
-		return currentHealth;
-	}
-	protected void setHealth (float newHealth)
-	{
-		currentHealth = newHealth;
-	}
-	protected float defenseAdjust (float damage)
-	{
-		return damage;
-	}
 }

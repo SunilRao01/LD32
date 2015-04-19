@@ -23,8 +23,6 @@ namespace Hamelin
 		private Rigidbody2D rigidbody;
 
 		private List<GameObject> targets;
-
-		private float currentHealth = 8;
 		
 		void Start()
 		{
@@ -103,38 +101,6 @@ namespace Hamelin
 		void AddEnemyToList (GameObject go)
 		{
 			targets.Add (go);
-		}
-
-		protected float getAttackTime()
-		{
-			return 1.2f;
-		}
-		protected float getDamage()
-		{
-			return 2f;
-		}
-		protected float getHealth()
-		{
-			return currentHealth;
-		}
-		protected void setHealth(float newHealth)
-		{
-			currentHealth = newHealth;
-		}
-		protected int getPoints()
-		{
-			return 15;
-		}
-		protected float defenseAdjust (float damage)
-		{
-			return damage/.9;
-		}
-		protected bool getExtraDamage(int special)
-		{
-			if (special == 0) {
-				return true;
-			}
-			return false;
 		}
 	}
 }
