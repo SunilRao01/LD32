@@ -4,7 +4,16 @@ using System.Collections;
 public class Porcupine : Animal
 {
 	protected float currentHealth = 25f;
-		
+	public AudioClip deathSound;
+	public AudioClip attackSound;
+	protected override AudioClip getAttackSound()
+	{
+		return deathSound;
+	}
+	protected override AudioClip getDeathSound()
+	{
+		return attackSound;
+	}
 	protected override float getAttackTime()
 	{
 		return 1.3f;

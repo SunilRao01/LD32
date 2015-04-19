@@ -190,6 +190,8 @@ public class Animal : MonoBehaviour
 			Vector2 vector = targetPosition_safe - transform.position;
 			Vector2 perpendicular = new Vector2(vector.y, -vector.x);
 			iTween.ShakePosition(gameObject, new Vector3(perpendicular.x, perpendicular.y) / 5, .1f);
+			GetComponent<AudioSource>().clip = getAttackSound();
+			GetComponent<AudioSource>().Play ();
 			if (targetObject.GetComponent<IEnemy>().takeDamage(this.getDamage (), this.damageType()))
 			{
  				//Debug.Log ("setting attack false: " + Time.timeSinceLevelLoad);
@@ -223,6 +225,14 @@ public class Animal : MonoBehaviour
 	{
 		return -1;
 	}
+	protected virtual AudioClip getAttackSound()
+	{
+		return null;
+	}
+	protected virtual AudioClip getDeathSound()
+	{
+		return null;
+	}
 
 	public bool takeDamage(float damage)
 	{
@@ -239,6 +249,11 @@ public class Animal : MonoBehaviour
 			queueIndex = player.GetComponent<Player>().getCurrentAnimalQueueSize();
 			player.GetComponent<Player>().queueManagementExtras();
 			player.GetComponent<Player>().updateQueuePositions(temp);
+			GameObject g = GameObject.Instantiate (Camera.main.GetComponentInChildren<GlobalView> ().killSpeaker);
+			GetComponent<AudioSource> ().Stop ();
+			g.GetComponent<AudioSource> ().clip = getDeathSound ();
+			g.GetComponent<AudioSource> ().Play ();
+
 			GameObject.Destroy (gameObject);
 			return true;
 		}

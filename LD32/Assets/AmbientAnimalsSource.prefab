@@ -135,7 +135,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 65c537ad4cf4b2248bb81e8ab193015c, type: 3}
   - {fileID: 8300000, guid: e95665ae5bf0a2448b73a52b867d3d99, type: 3}
   - {fileID: 8300000, guid: f4496b4ffaacba24bbfec0d07d964ba0, type: 3}
-  AmbientForestSource: {fileID: 0}
+  AmbientForestSource: {fileID: 117878, guid: 72b3ee47b284b6843afe57a61606e59d, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

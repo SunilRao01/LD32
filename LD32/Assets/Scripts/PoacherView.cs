@@ -117,6 +117,5 @@ namespace Hamelin
 			}
 			return false;
 		}
-
 	}
 }

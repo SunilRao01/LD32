@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 	public int maxAnimalQueueSize;
 	private GameObject animalQueuePortraits;
 
+	public AudioClip[] piperNoise;
+
 	// Animal portraits
 	public Sprite squirrelSprite;
 	public Sprite birdSprite;
@@ -146,6 +148,10 @@ public class Player : MonoBehaviour
 			// Make animal call circle visible
 			pingObject.GetComponent<MeshRenderer>().enabled = true;
 			pingObject.GetComponent<CircleCollider2D>().enabled = true;
+
+			GetComponent<AudioSource>().clip = piperNoise[Random.Range(0,piperNoise.Length)];
+			GetComponent<AudioSource>().Play ();
+
 
 			Vector3 scaleTarget = new Vector3(pingRange, pingRange, pingRange);
 			iTween.ScaleTo(pingObject, 

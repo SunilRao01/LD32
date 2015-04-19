@@ -12,6 +12,7 @@ GameObject:
   - 61: {fileID: 6134020}
   - 50: {fileID: 5077198}
   - 114: {fileID: 11439036}
+  - 82: {fileID: 8286054}
   m_Layer: 9
   m_Name: Squirrel
   m_TagString: Animal
@@ -59,6 +60,75 @@ BoxCollider2D:
   m_Offset: {x: .00131559372, y: -.00131487846}
   serializedVersion: 2
   m_Size: {x: .270131052, y: .480233073}
+--- !u!82 &8286054
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144492}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11439036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,6 +151,8 @@ MonoBehaviour:
   isAttacking: 0
   queueIndex: 0
   caught: 0
+  deathSound: {fileID: 8300000, guid: a437a609049877a4ebe1a5fdfc53fe5f, type: 3}
+  attackSound: {fileID: 8300000, guid: 805b01a149eabf84b8ba213e5f41593f, type: 3}
 --- !u!212 &21275390
 SpriteRenderer:
   m_ObjectHideFlags: 1

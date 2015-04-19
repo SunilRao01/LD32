@@ -82,6 +82,7 @@ namespace Hamelin
 		{
 			return damage;
 		}
+
 		public bool takeDamage(float damage, int special)
 		{
 			Debug.Log ("D1:" + damage);
@@ -104,7 +105,7 @@ namespace Hamelin
 				}
 				GameObject.Destroy (gameObject);
 				return true;
-			} else if (Random.Range (0, 9) > 7 && !GetComponent<AudioSource> ().isPlaying) {
+			} else if (!GetComponent<AudioSource> ().isPlaying) {
 				GetComponent<AudioSource> ().clip = Camera.main.GetComponentInChildren<GlobalView> ().getEnemyHurtSound ();
 				GetComponent<AudioSource>().Play ();
 			}
