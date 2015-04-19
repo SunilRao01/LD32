@@ -115,7 +115,7 @@ namespace Hamelin
 				isCounting = false;
 				
 				// TODO: Give the player a 5 second breather before the next wave starts
-				yield return new WaitForSeconds(5);
+				//yield return new WaitForSeconds(5);
 				
 				isCounting = true;
 			}
