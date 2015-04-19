@@ -1,17 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class Bird : Animal {
-
-	protected float currentHealth = 15f;
-
+public class Bear : Animal
+{
+	protected float currentHealth = 20f;
+	
 	protected float getAttackTime()
 	{
-		return 1f;
+		return 1.7f;
 	}
 	protected float getDamage()
 	{
-		return 5f;
+		return 8f;
 	}
 	protected float getHealth()
 	{
@@ -23,6 +23,7 @@ public class Bird : Animal {
 	}
 	protected float defenseAdjust (float damage)
 	{
-		return damage;
+		return damage/1.2;
 	}
 }
+

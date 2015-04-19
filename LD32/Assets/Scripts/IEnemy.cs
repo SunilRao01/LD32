@@ -71,8 +71,23 @@ namespace Hamelin
 		{
 			currentHealth = newHealth;
 		}
-		public bool takeDamage(float damage)
+		protected virtual int getPoints()
 		{
+			return 0;
+		}
+		protected virtual bool getExtraDamage(int special)
+		{
+			return false;
+		}
+		protected virtual float defenseAdjust (float damage)
+		{
+			return damage;
+		}
+		public bool takeDamage(float damage, int special)
+		{
+			if (getExtraDamage (special)) {
+				damage += 5;
+			}
 			setHealth (getHealth () - damage);
 			if (getHealth () <= 0) {
 				GameObject g = GameObject.Instantiate (Camera.main.GetComponentInChildren<GlobalView> ().killSpeaker);

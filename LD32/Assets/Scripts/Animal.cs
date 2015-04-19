@@ -215,9 +215,14 @@ public class Animal : MonoBehaviour
 	{
 		currentHealth = newHealth;
 	}
+	protected virtual float defenseAdjust (float damage)
+	{
+		return damage;
+	}
+
 	public bool takeDamage(float damage)
 	{
-		setHealth (getHealth() - damage);
+		setHealth (getHealth() - defenseAdjust(damage));
 		if (getHealth () <= 0) {
 			foreach (Target target in selfAsTargets)
 			{
