@@ -84,10 +84,10 @@ namespace Hamelin
 		}
 
 		public AudioClip getEnemyScreamsSound()
+
+		{
 		{
 			return screams[Random.Range(0,screams.Length)];
-		}
-		
 		IEnumerator waveTimer()
 		{
 			while (true)

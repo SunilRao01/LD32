@@ -6619,11 +6619,15 @@ Prefab:
     - target: {fileID: 11494514, guid: 2a435ca9005af1a4ba667dae624437a3, type: 2}
       propertyPath: genericPoachers.Array.data[2]
       value: 
-      objectReference: {fileID: 136728, guid: e9e54e0124db49649a0b91605c9724c4, type: 2}
+<<<<<<< HEAD
+      objectReference: {fileID: 136728, guid: f3ec9db8cac805543b258989072cd963, type: 2}
     - target: {fileID: 11494514, guid: 2a435ca9005af1a4ba667dae624437a3, type: 2}
       propertyPath: deer
       value: 
       objectReference: {fileID: 1575648297}
+=======
+      objectReference: {fileID: 136728, guid: e9e54e0124db49649a0b91605c9724c4, type: 2}
+>>>>>>> 8a064260a64d8de5be3bf2ad1be457ee0421efdb
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a435ca9005af1a4ba667dae624437a3, type: 2}
   m_IsPrefabParent: 0
