@@ -33,19 +33,26 @@ namespace Hamelin
 		public float maxEnemySpawnTime;
 
 		public GameObject deer;
-		private int currentWave;
-		private Text waveLabel;
 		public AudioClip[] screams;
 
 		public int Score;
 
+		// Wave/Timer Labels
+		private int currentWave;
+		private Text waveLabel;
+		private Text waveTimerLabel;
+		private float timer;
+		private bool isCounting;
+
 		void Awake()
 		{
 			waveLabel = GameObject.Find("WaveLabel").GetComponent<Text>();
+			waveTimerLabel = GameObject.Find("WaveTimer").GetComponent<Text>();
 		}
 
 		void Start()
 		{
+			isCounting = true;
 			pathContainer = new PathContainer (regionContainer);
 			currentWave = 1;
 
@@ -54,12 +61,21 @@ namespace Hamelin
 
 		void Update()
 		{
+			if (isCounting)
+			{
+				timer += Time.deltaTime;
+			}
+
 			waveLabel.text = "Wave " + currentWave.ToString();
+			float seconds = Mathf.RoundToInt(timer);
+			waveTimerLabel.text = (60 - seconds).ToString();
 
 			if (Time.timeSinceLevelLoad - time > nextTime) 
 			{
 				// Set a random timed interval before spawning next 
-				nextTime = Random.Range(minEnemySpawnTime, maxEnemySpawnTime);
+				float minTime = minEnemySpawnTime - currentWave;
+				float maxTime = maxEnemySpawnTime - currentWave;
+				nextTime = Random.Range(minTime, maxTime);
 				time = Time.timeSinceLevelLoad;
 
 				// Spawn random type of poacher
@@ -90,15 +106,18 @@ namespace Hamelin
 		
 		IEnumerator waveTimer()
 		{
-			while (true)
+			while (true && isCounting)
 			{
-				yield return new WaitForSeconds(2);
-
+				yield return new WaitForSeconds(60);
+				
 				currentWave++;
-				// TODO: Restart Timer
-
+				timer = 0;
+				isCounting = false;
+				
 				// TODO: Give the player a 5 second breather before the next wave starts
-				//yield return new WaitForSeconds(5);
+				yield return new WaitForSeconds(5);
+				
+				isCounting = true;
 			}
 		}
 	}
