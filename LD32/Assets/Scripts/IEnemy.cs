@@ -16,7 +16,6 @@ namespace Hamelin
 		protected Vector2 offset;
 
 		protected float timer;
-		private float currentHealth = 15;
 
 		public List<Target> selfAsTargets = new List<Target>();
 
@@ -65,15 +64,15 @@ namespace Hamelin
 		}
 		protected virtual float getHealth()
 		{
-			return currentHealth;
+			return 0;
 		}
 		protected virtual void setHealth(float newHealth)
 		{
-			currentHealth = newHealth;
+			return;
 		}
 		protected virtual int getPoints()
 		{
-			return 0;
+			return 10;
 		}
 		protected virtual bool getExtraDamage(int special)
 		{
@@ -90,6 +89,7 @@ namespace Hamelin
 			}
 			setHealth (getHealth () - damage);
 			if (getHealth () <= 0) {
+				Camera.main.GetComponentInChildren<GlobalView>().Score += getPoints();
 				GameObject g = GameObject.Instantiate (Camera.main.GetComponentInChildren<GlobalView> ().killSpeaker);
 				GetComponent<AudioSource> ().Stop ();
 				g.GetComponent<AudioSource> ().clip = Camera.main.GetComponentInChildren<GlobalView> ().getEnemyKilledSound ();
