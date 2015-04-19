@@ -21,6 +21,8 @@ namespace Hamelin
 
 		private bool TESTING = false;
 
+
+
 		void Start()
 		{
 			pathContainer = new PathContainer (regionContainer);
