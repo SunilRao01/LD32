@@ -84,11 +84,16 @@ namespace Hamelin
 		}
 		public bool takeDamage(float damage, int special)
 		{
+			Debug.Log ("D1:" + damage);
 			if (getExtraDamage (special)) {
 				damage += 5;
 			}
-			setHealth (getHealth () - damage);
+			Debug.Log ("D2:" + damage);
+			Debug.Log("H1:" + getHealth ());
+			Debug.Log ("D3:" + defenseAdjust (damage));
+			setHealth (getHealth () - defenseAdjust(damage));
 			if (getHealth () <= 0) {
+				Debug.Log ("H2:" + getHealth());
 				Camera.main.GetComponentInChildren<GlobalView>().Score += getPoints();
 				GameObject g = GameObject.Instantiate (Camera.main.GetComponentInChildren<GlobalView> ().killSpeaker);
 				GetComponent<AudioSource> ().Stop ();

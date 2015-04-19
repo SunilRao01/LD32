@@ -5,27 +5,27 @@ public class Squirrel : Animal
 {
 	protected float currentHealth = 15f;
 	
-	protected float getAttackTime()
+	protected override float getAttackTime()
 	{
 		return .7f;
 	}
-	protected float getDamage()
+	protected override float getDamage()
 	{
 		return 3f;
 	}
-	protected float getHealth()
+	protected override float getHealth()
 	{
 		return currentHealth;
 	}
-	protected void setHealth (float newHealth)
+	protected override void setHealth (float newHealth)
 	{
 		currentHealth = newHealth;
 	}
-	protected float defenseAdjust (float damage)
+	protected override float defenseAdjust (float damage)
 	{
 		return damage;
 	}
-	protected int damageType()
+	protected override int damageType()
 	{
 		return 0;
 	}
