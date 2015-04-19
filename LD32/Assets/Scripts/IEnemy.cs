@@ -20,11 +20,18 @@ namespace Hamelin
 
 		public List<Target> selfAsTargets = new List<Target>();
 
+		protected bool readyToDie = false;
+
 		protected void updateTarget()
 		{
 
 			Target t;
 			if ((t = targetContainer.GetTarget()) != oldTarget) {
+				if (oldTarget == null)
+				{
+					GetComponent<AudioSource>().clip = Camera.main.GetComponentInChildren<GlobalView>().getEnemyDiscoveredSound();
+					GetComponent<AudioSource>().Play ();
+				}
 				offset = Random.insideUnitCircle / 3;
 				oldTarget = t;
 				if (oldTarget != null) {
@@ -68,12 +75,18 @@ namespace Hamelin
 		{
 			setHealth (getHealth () - damage);
 			if (getHealth () <= 0) {
-				foreach (Target target in selfAsTargets)
-				{
+				GameObject g = GameObject.Instantiate (Camera.main.GetComponentInChildren<GlobalView> ().killSpeaker);
+				GetComponent<AudioSource> ().Stop ();
+				g.GetComponent<AudioSource> ().clip = Camera.main.GetComponentInChildren<GlobalView> ().getEnemyKilledSound ();
+				g.GetComponent<AudioSource> ().Play ();
+				foreach (Target target in selfAsTargets) {
 					target.cleanReferences ();
 				}
 				GameObject.Destroy (gameObject);
 				return true;
+			} else if (Random.Range (0, 9) > 7 && !GetComponent<AudioSource> ().isPlaying) {
+				GetComponent<AudioSource> ().clip = Camera.main.GetComponentInChildren<GlobalView> ().getEnemyHurtSound ();
+				GetComponent<AudioSource>().Play ();
 			}
 			return false;
 		}

@@ -21,7 +21,11 @@ namespace Hamelin
 
 		private bool TESTING = false;
 
+		public AudioClip[] discovered;
+		public AudioClip[] damaged;
+		public AudioClip[] killed;
 
+		public GameObject killSpeaker;
 
 		void Start()
 		{
@@ -36,6 +40,21 @@ namespace Hamelin
 				GameObject myPoacher = GameObject.Instantiate(poacher);
 				myPoacher.GetComponent<PoacherView>().controller = new PathingController(pathContainer.getPath());
 			}
+		}
+
+		public AudioClip getEnemyDiscoveredSound()
+		{
+			return discovered[Random.Range(0,discovered.Length)];
+		}
+
+		public AudioClip getEnemyHurtSound()
+		{
+			return damaged[Random.Range(0,damaged.Length)];
+		}
+
+		public AudioClip getEnemyKilledSound()
+		{
+			return killed[Random.Range(0,killed.Length)];
 		}
 	}
 }
