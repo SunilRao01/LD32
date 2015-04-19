@@ -124,7 +124,7 @@ public class Animal : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		// If your animal collides with an enemy
-		if (other.gameObject.CompareTag("Enemy") && (Time.timeSinceLevelLoad - forceFollowTimer) > 1)
+		if (other.gameObject.CompareTag("Enemy") && (Time.timeSinceLevelLoad - forceFollowTimer) > 1 && isMoving)
 		{
 			//Debug.Log("An animal has hit an enemy!");
 

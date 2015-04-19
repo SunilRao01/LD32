@@ -61,13 +61,11 @@ public class Player : MonoBehaviour
 	void handleMovement()
 	{
 		Vector2 movementDirection = new Vector2(0, 0);
-
 		if (movementDirection.x < maxMovementSpeed && movementDirection.y < maxMovementSpeed)
 		{
 			movementDirection.x = Input.GetAxisRaw("Horizontal") * movementForce;
 			movementDirection.y = Input.GetAxisRaw("Vertical") * movementForce;
 		}
-	
 
 		rigidbody.AddForce(movementDirection);
 	}
