@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
 
 	// Animal Queue
 	private List<Animal> animalQueue;
-	public int maxAnimalQueueSize;
 	private GameObject animalQueuePortraits;
 
 	public AudioClip[] piperNoise;
