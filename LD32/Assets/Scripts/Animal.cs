@@ -50,7 +50,6 @@ public class Animal : MonoBehaviour
 
 	void Update()
 	{
-		Debug.Log (isAttacking);
 		updateTarget ();
 		if (targetObject != null) { updateAttack (); }
 		updateTarget ();
@@ -106,6 +105,11 @@ public class Animal : MonoBehaviour
 			queueIndex = other.transform.parent.gameObject.GetComponent<Player>().getCurrentAnimalQueueSize();
 			isMoving = true;
 			caught = true;
+			Target t;
+			while ((t = targetContainer.GetTarget()) != null)
+			{
+				targetContainer.RemoveTarget(t);
+			}
 			forceFollowTimer = Time.timeSinceLevelLoad;
 		}
 
@@ -143,9 +147,11 @@ public class Animal : MonoBehaviour
 			}
 			isMoving = false;
 
-			Target myTemp1 = new Target(other.gameObject, targetContainer);
-			other.gameObject.GetComponent<IEnemy>().selfAsTargets.Add(myTemp1);
-			targetContainer.AddTarget(myTemp1);
+			if (targetContainer.GetTarget() == null) {
+				Target myTemp1 = new Target(other.gameObject, targetContainer);
+				other.gameObject.GetComponent<IEnemy>().selfAsTargets.Add(myTemp1);
+				targetContainer.AddTarget(myTemp1);
+			}
 
 			//add set up the target container
 			TargetContainer tc = other.gameObject.GetComponent<IEnemy>().targetContainer;

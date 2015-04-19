@@ -12,7 +12,6 @@ namespace Hamelin
 		{
 			instance = go;
 			targetContainer = tc;
-			targetContainer.AddTarget (this);
 		}
 
 		public GameObject getGameObject()

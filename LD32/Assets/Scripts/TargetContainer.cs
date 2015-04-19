@@ -26,7 +26,7 @@ namespace Hamelin
 		public Target GetTarget()
 		{
 			if (targets.Count > 0) {
-				Debug.Log ("Returning Target: " + targets[0]);
+				Debug.Log ("Returning Target: " + targets[0] + ", Target count: " + targets.Count);
 				return targets[0];
 			}
 			return null;
