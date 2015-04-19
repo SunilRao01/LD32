@@ -1,13 +1,149 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &137682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 465138}
+  - 82: {fileID: 8267856}
+  - 114: {fileID: 11411962}
+  m_Layer: 0
+  m_Name: AmbientAnimalsSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &465138
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!82 &8267856
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137682}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: .200000003
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &11411962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c86d63d50d99a943a0066bb97e66113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  daySounds:
+  - {fileID: 8300000, guid: 9fb679a2261e00e4abd72febc0635b7e, type: 3}
+  - {fileID: 8300000, guid: 54125083e94ce7040bdc063165b156ef, type: 3}
+  - {fileID: 8300000, guid: bac8c385065f7e94784941972e045d24, type: 3}
+  - {fileID: 8300000, guid: 11d730e7068951240b130afd9a2c3bc8, type: 3}
+  - {fileID: 8300000, guid: 372decd81070b3146a370318e7509652, type: 3}
+  - {fileID: 8300000, guid: 85cb151b657ea924a99d0203330b614f, type: 3}
+  - {fileID: 8300000, guid: d7f0d95b0134236438ec89fa5661231b, type: 3}
+  - {fileID: 8300000, guid: a594a97b24a50a0468ffa113c5b0b009, type: 3}
+  - {fileID: 8300000, guid: c1ac340c8ecf1cd41b845c9a1376cded, type: 3}
+  - {fileID: 8300000, guid: 82ff0dad387d64c4eb4461ade7b869c6, type: 3}
+  - {fileID: 8300000, guid: 0eff403e4a0d1b94d888ae82c3066180, type: 3}
+  nightSounds:
+  - {fileID: 8300000, guid: 8dda4dc000eb9de4b81fd4e14e489be4, type: 3}
+  - {fileID: 8300000, guid: 54125083e94ce7040bdc063165b156ef, type: 3}
+  - {fileID: 8300000, guid: 02766da420cfefa41958805bad95cf92, type: 3}
+  - {fileID: 8300000, guid: 8a63d94585b20244188f33ad85dc7e0f, type: 3}
+  - {fileID: 8300000, guid: bac8c385065f7e94784941972e045d24, type: 3}
+  - {fileID: 8300000, guid: b4691fc6bffceb94aa4a29ad889cf9ae, type: 3}
+  - {fileID: 8300000, guid: 11d730e7068951240b130afd9a2c3bc8, type: 3}
+  - {fileID: 8300000, guid: 5478d50baffe56540a0e6f32b6e3c27f, type: 3}
+  - {fileID: 8300000, guid: 648181ab06d1da2408a9d36ccd339bb1, type: 3}
+  - {fileID: 8300000, guid: 607f8afc88be0784a8d7a82ec4ca249f, type: 3}
+  - {fileID: 8300000, guid: 65c537ad4cf4b2248bb81e8ab193015c, type: 3}
+  - {fileID: 8300000, guid: e95665ae5bf0a2448b73a52b867d3d99, type: 3}
+  - {fileID: 8300000, guid: f4496b4ffaacba24bbfec0d07d964ba0, type: 3}
+  AmbientForestSource: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 0}
+  m_RootGameObject: {fileID: 137682}
   m_IsPrefabParent: 1
