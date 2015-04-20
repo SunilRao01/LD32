@@ -2,16 +2,16 @@
 a historical title
 
 # Roles
-Alex Chytrowsky: Lead, HUD, planning  
+Alex Chytrowsky: Lead, HUD, Planning  
 
-Matt Murphy: planning, documentation  
+Matt Murphy: Planning, Documentation  
 
-Sunil Rao: grand master of the Unity  
+Sunil Rao: Gameplay Programmer, Grandmaster of Unity
 
-Ian Swift: AI/pathfinding  
+Ian Swift: AI/Pathfinding  
 
-Keith Thomas: 2D art  
+Keith Thomas: 2D Art  
 
-Bryan Spahr: voices, music, ambient sound  
+Bryan Spahr: Voices, Music, Ambient Sound, ALL THE AUDIOS
 
 Nathan Hurde: bringer of the chicken  
