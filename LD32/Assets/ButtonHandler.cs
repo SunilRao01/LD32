@@ -6,6 +6,7 @@ public class ButtonHandler : MonoBehaviour {
 	public GameObject screen;
 	public GameObject text;
 	public GameObject button;
+	public GameObject instructionsText;
 
 	private bool viewingCredits = false;
 
@@ -14,6 +15,7 @@ public class ButtonHandler : MonoBehaviour {
 		screen.SetActive (false);
 		text.SetActive (false);
 		button.SetActive (false);
+		instructionsText.SetActive(false);
 	}
 
 	public void OnPressStart()
@@ -25,15 +27,16 @@ public class ButtonHandler : MonoBehaviour {
 
 	public void OnPressBackToMenu()
 	{
-		if (viewingCredits) {
 			screen.SetActive (false);
 			text.SetActive (false);
 			button.SetActive (false);
-			viewingCredits = false;
-		}
+		instructionsText.SetActive(false);
 	}
 	public void OnPressHowToPlay()
 	{
+		screen.SetActive(true);
+		instructionsText.SetActive(true);
+		button.SetActive(true);
 	}
 	public void OnPressCredits()
 	{
@@ -46,8 +49,7 @@ public class ButtonHandler : MonoBehaviour {
 	}
 	public void OnPressQuit()
 	{
-		if (!viewingCredits) {
 			Application.Quit ();
-		}
+
 	}
 }
