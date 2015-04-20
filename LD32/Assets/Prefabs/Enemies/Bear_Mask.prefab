@@ -10,10 +10,10 @@ GameObject:
   - 4: {fileID: 419208}
   - 212: {fileID: 21203228}
   - 50: {fileID: 5094264}
-  - 114: {fileID: 11442556}
   - 61: {fileID: 6154092}
   - 82: {fileID: 8253022}
   - 95: {fileID: 9505296}
+  - 114: {fileID: 11438376}
   m_Layer: 10
   m_Name: Bear_Mask
   m_TagString: Enemy
@@ -147,7 +147,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11442556
+--- !u!114 &11438376
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 136728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77ba4514a78e60b45806e0c60934b51a, type: 3}
+  m_Script: {fileID: 11500000, guid: f07b47380e8aa1c49904cf8b1d209d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &21203228

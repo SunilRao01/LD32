@@ -49,6 +49,9 @@ public class Animal : MonoBehaviour
 
 	void Update()
 	{
+		GetComponent<Animator>().SetBool("attack", isAttacking);
+		GetComponent<Animator>().SetBool("walk", isMoving);
+
 		updateTarget ();
 		if (targetObject != null) { updateAttack (); }
 		updateTarget ();

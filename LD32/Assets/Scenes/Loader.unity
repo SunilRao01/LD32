@@ -774,6 +774,19 @@ Prefab:
       propertyPath: deer
       value: 
       objectReference: {fileID: 616731848}
+    - target: {fileID: 11438450, guid: 3642f623fdafe8640be0f513192ce2bd, type: 2}
+      propertyPath: genericPoachers.Array.data[0]
+      value: 
+      objectReference: {fileID: 156924, guid: 8dcb4441e0281174b91455ccb44e4525, type: 2}
+    - target: {fileID: 11438450, guid: 3642f623fdafe8640be0f513192ce2bd, type: 2}
+      propertyPath: genericPoachers.Array.data[1]
+      value: 
+      objectReference: {fileID: 154664, guid: 380b961653424f14ab263a4ef72abccb, type: 2}
+    - target: {fileID: 11408244, guid: 3642f623fdafe8640be0f513192ce2bd, type: 2}
+      propertyPath: bearSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 068314d8dee27084bbf94179919ab486,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3642f623fdafe8640be0f513192ce2bd, type: 2}
   m_IsPrefabParent: 0

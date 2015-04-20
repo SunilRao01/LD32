@@ -26,6 +26,7 @@ namespace Hamelin
 		void Update () {
 			
 			if (attackingDeer) {
+				GetComponent<Animator>().SetBool("attack", true);
 				if (Vector2.Distance(targetObject.transform.position, transform.position) > 1.2) { targetPosition = targetObject.transform.position; }
 				GetComponent<Rigidbody2D>().AddForce((targetPosition - transform.position + new Vector3(offset.x, offset.y)) * GlobalGO.MovementForce);
 
@@ -84,6 +85,16 @@ namespace Hamelin
 				{
 					rigidbody.AddForce(movementDirection);
 				}
+			}
+
+			// Set poacher animations
+			if (rigidbody.velocity.x != 0)
+			{
+				GetComponent<Animator>().SetBool("walk", true);
+			}
+			else
+			{
+				GetComponent<Animator>().SetBool("walk", false);
 			}
 		}
 		protected override float getAttackTime()

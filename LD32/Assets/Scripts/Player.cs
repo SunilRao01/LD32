@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 	// Animal portraits
 	public Sprite squirrelSprite;
 	public Sprite birdSprite;
+	public Sprite bearSprite;
 
 	void Awake()
 	{
@@ -112,6 +113,10 @@ public class Player : MonoBehaviour
 			{
 				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = birdSprite;
 			}
+			else if (animalQueue[i].name == "Bear")
+			{
+				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = bearSprite;
+			}
 		}
 	}
 
@@ -139,6 +144,10 @@ public class Player : MonoBehaviour
 				else if (animalQueue[i].name == "Bird")
 				{
 					animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = birdSprite;
+				}
+				else if (animalQueue[i].name == "Bear")
+				{
+					animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = bearSprite;
 				}
 			}
 
@@ -207,6 +216,10 @@ public class Player : MonoBehaviour
 			{
 				animalQueuePortraits.transform.GetChild(animalQueue.Count-1).GetComponent<Image>().sprite = birdSprite;
 			}
+			else if (inputAnimal.name == "Bear")
+			{
+				animalQueuePortraits.transform.GetChild(animalQueue.Count-1).GetComponent<Image>().sprite = bearSprite;
+			}
 		}
 	}
 
@@ -225,6 +238,10 @@ public class Player : MonoBehaviour
 			{
 				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = birdSprite;
 			}
+			else if (animalQueue[i].name == "Bear")
+			{
+				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = bearSprite;
+			}
 		}
 	}
 
@@ -241,6 +258,10 @@ public class Player : MonoBehaviour
 			else if (animalQueue[i].name == "Bird")
 			{
 				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = birdSprite;
+			}
+			else if (animalQueue[i].name == "Bear")
+			{
+				animalQueuePortraits.transform.GetChild(i).GetComponent<Image>().sprite = bearSprite;
 			}
 		}
 	}
