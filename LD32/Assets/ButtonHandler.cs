@@ -27,9 +27,9 @@ public class ButtonHandler : MonoBehaviour {
 
 	public void OnPressBackToMenu()
 	{
-			screen.SetActive (false);
-			text.SetActive (false);
-			button.SetActive (false);
+		screen.SetActive (false);
+		text.SetActive (false);
+		button.SetActive (false);
 		instructionsText.SetActive(false);
 	}
 	public void OnPressHowToPlay()
@@ -40,12 +40,11 @@ public class ButtonHandler : MonoBehaviour {
 	}
 	public void OnPressCredits()
 	{
-		if (!viewingCredits) {
 			screen.SetActive (true);
 			text.SetActive (true);
 			button.SetActive (true);
 			viewingCredits = true;
-		}
+
 	}
 	public void OnPressQuit()
 	{

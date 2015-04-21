@@ -192,9 +192,9 @@ MonoBehaviour:
 
     Move: WASD/Arrow keys
 
-    Call Animals: Left Mouse Click
+    Call Animals: Right Mouse Click
 
-    Throw Animals: Right Mouse Click'
+    Throw Animals: Left Mouse Click'
 --- !u!222 &33698713
 CanvasRenderer:
   m_ObjectHideFlags: 0
