@@ -13,8 +13,9 @@ public class DeerView : MonoBehaviour {
 			GameObject.Destroy (player.GetComponent<Player>().canvas);
 			GameObject.Destroy(player);
 			GameObject.Destroy (GameObject.Find ("RegionContainer 1"));
+			GameObject.Destroy (GameObject.Find ("BG Music"));
 			GameObject.Destroy (gameObject);
-			Application.LoadLevel ("Loader");
+			Application.LoadLevel ("Title");
 		}
 	}
 }
